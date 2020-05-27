@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="interpia.dao.EmployeeDao">
+<resultMap type="Employee" id="EmployeeMap">
+<id column="user_no" property="userNo"/>
+<result column="kor_name" property="korName"/>
+<result column="eng_name" property="engName"/>
+<result column="chi_name" property="chiName"/>
+<result column="resident_no" property="residentNo"/>
+<result column="image" property="image"/>
+<result column="birth_date" property="birthDate"/>
+<result column="sex" property="sex"/>
+<result column="martial_status" property="martialStatus"/>
+<result column="year" property="year"/>
+<result column="payment_type" property="paymentType"/>
+<result column="type_job" property="typeJob"/>
+<result column="employment_type" property="employmentType"/>
+<result column="adress" property="adress"/>
+<result column="number" property="number"/>
+<result column="email" property="email"/>
+<result column="tech_grade" property="techGrade"/>
+<result column="alcohol" property="alcohol"/>
+</resultMap>
+
+<select id="findAll" resultMap="EmployeeMap">
+select 
+	*
+from
+	employee
+</select>
+
+<select id="findByNo" resultMap="EmployeeMap" parameterType="int">
+select 
+    	* 
+from 
+	employee
+where 
+	user_no = #{no}
+</select>
+
+<insert id="insert" parameterType="Employee">
+insert into employee 
+	(image,
+	kor_name, 
+	eng_name,
+	chi_name, 
+	resident_no, 
+	birth_date, 
+	sex, 
+	martial_status, 
+	year, 
+	payment_type, 
+	type_job, 
+	employment_type, 
+	adress, 
+	number, 
+	email, 
+	tech_grade, 
+	alcohol)
+values(
+		#{image},
+		#{korName}, 
+		#{engName}, 
+		#{chiName}, 
+		#{residentNo}, 
+		#{birthDate}, 
+		#{sex}, 
+		#{martialStatus}, 
+		#{year}, 
+		#{paymentType}, 
+		#{typeJob}, 
+		#{employmentType}, 
+		#{adress}, 
+		#{number}, 
+		#{email}, 
+		#{techGrade}, 
+		#{alcohol})
+</insert>
+
+<delete id="delete" parameterType="int">
+delete from 
+	employee
+where user_no=#{userNo}
+</delete>
+
+<update id="update" parameterType="Employee">
+update employee
+<set>
+<if test="korName != null and korName != ''">kor_name=#{korName},</if>
+<if test="engName != null and engName != ''">eng_name=#{engName},</if>
+<if test="chiName != null and chiName != ''">chi_name=#{chiName},</if>
+<if test="residentNo != null and residentNo != ''">resident_no=#{residentNo},</if>
+<if test="image != null and image != ''">image=#{image},</if>
+<if test="birthDate != null">birth_date=#{birthDate},</if>
+<if test="martialStatus != null and martialStatus != ''">martial_status=#{martialStatus},</if>
+<if test="year != null and year != ''">year=#{year},</if>
+<if test="paymentType != null and paymentType != ''">payment_type=#{paymentType},</if>
+<if test="typeJob != null and typeJob != ''">type_job=#{typeJob},</if>
+<if test="employmentType != null and employmentType != ''">employment_type=#{employmentType},</if>
+<if test="adress != null and adress != ''">adress=#{adress},</if>
+<if test="number != null and number != ''">number=#{number},</if>
+<if test="email != null and email != ''">email=#{email},</if>
+<if test="techGrade != null and techGrade != ''">tech_grade=#{techGrade},</if>
+<if test="alcohol != null and alcohol != ''">alcohol=#{alcohol},</if>
+<if test="image != null and image != ''">image=#{image}</if>
+	</set>
+where
+	user_no = #{userNo}
+</update>
+
+  <select id="findByKeyword" resultMap="EmployeeMap"
+    parameterType="string">
+        <bind name="keywordPattern" value="'%' + _parameter + '%'"/>
+        select
+		*	
+		from 
+		employee
+        where     
+            kor_name like #{keywordPattern}
+<!--             or sex like #{keywordPattern} -->
+            or tech_grade like #{keywordPattern}
+    </select>
+
+
+
+</mapper>
