@@ -3,6 +3,31 @@
 										employment_type, adress, number, email, tech_grade, alcohol)
 	values ('채진호', 'ChaeJinHo', '950104-1185130', '1995-01-04', 0,
 			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');
+				insert into employee (kor_name, eng_name, resident_no, birth_date, sex, 
+										martial_status, year, payment_type, type_job, 
+										employment_type, adress, number, email, tech_grade, alcohol)
+	values ('b', 'b', '950104-1185130', '1995-01-04', 0,
+			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');
+				insert into employee (kor_name, eng_name, resident_no, birth_date, sex, 
+										martial_status, year, payment_type, type_job, 
+										employment_type, adress, number, email, tech_grade, alcohol)
+	values ('c', 'c', '950104-1185130', '1995-01-04', 0,
+			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');
+				insert into employee (kor_name, eng_name, resident_no, birth_date, sex, 
+										martial_status, year, payment_type, type_job, 
+										employment_type, adress, number, email, tech_grade, alcohol)
+	values ('d', 'd', '950104-1185130', '1995-01-04', 0,
+			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');
+				insert into employee (kor_name, eng_name, resident_no, birth_date, sex, 
+										martial_status, year, payment_type, type_job, 
+										employment_type, adress, number, email, tech_grade, alcohol)
+	values ('e', 'e', '950104-1185130', '1995-01-04', 0,
+			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');
+				insert into employee (kor_name, eng_name, resident_no, birth_date, sex, 
+										martial_status, year, payment_type, type_job, 
+										employment_type, adress, number, email, tech_grade, alcohol)
+	values ('f', 'f', '950104-1185130', '1995-01-04', 0,
+			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');
 	insert into employee(kor_name, eng_name, resident_no, birth_date, sex, 
 										martial_status, year, payment_type, type_job, 
 										employment_type, adress, number, email, tech_grade, alcohol)

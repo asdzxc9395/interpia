@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+#name {
+	float: left;
+	margin-left: 5px;
+}
+
+#user {
+	margin-left: 10px;
+}
+
+#image {
+	clear: both;
+}
+
+#year {
+	float: left;
+}
+
+#payment {
+	float: left;
+	margin-left: 10px;
+}
+
+#adress {
+	clear: both;
+}
+
+#email {
+	float: left;
+}

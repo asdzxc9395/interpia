@@ -23,7 +23,7 @@ CREATE TABLE employee (
 		number INTEGER NOT NULL,
 		email VARCHAR(50) NULL,
 		tech_grade VARCHAR(20) NULL,
-		alcohol VARCHAR(20) NULL
+		alcohol VARCHAR(20) NULL,
 );
 
 -- 학력,교육정보
