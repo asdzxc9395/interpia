@@ -2,7 +2,6 @@ package interpia.service;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import interpia.domain.Criteria;
 import interpia.domain.Employee;
@@ -23,7 +22,7 @@ public interface EmployeeService {
 	
 	List<Employee> search(HashMap<String, Object> params) throws Exception;
 
-	List<Map<String, Object>> pageList(Criteria cri) throws Exception;
+	List<Employee> listPage(Criteria cri) throws Exception;
 	
-	public int countList() throws Exception;
+	public int getTotalCount(Criteria cri) throws Exception;
 }

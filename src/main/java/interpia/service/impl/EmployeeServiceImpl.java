@@ -2,7 +2,6 @@ package interpia.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.stereotype.Component;
 
@@ -56,13 +55,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 	  }
 
 	@Override
-	public List<Map<String, Object>> pageList(Criteria cri) {
-		return employeeDao.pageList(cri);
+	public List<Employee> listPage(Criteria cri) throws Exception {
+		return employeeDao.listPage(cri);
 	}
 
 	@Override
-	public int countList() {
-		return employeeDao.countList();
+	public int getTotalCount(Criteria cri) throws Exception {
+		return employeeDao.getTotalCount(cri);
 	}
 	
 	

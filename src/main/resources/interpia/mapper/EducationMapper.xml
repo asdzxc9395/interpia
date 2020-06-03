@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="interpia.dao.EducationDao">
+
+  <resultMap type="Education" id="EducationMap">
+    <id column="education_no"   property="educationNo"/>
+    <result column="user_no"  property="userNo"/>
+    <result column="hs_name"  property="hsName"/>
+    <result column="hs_major"  property="hsMajor"/>
+    <result column="hs_date"    property="hsDate"/>
+    <result column="cp_name"  property="cpName"/>
+    <result column="cp_major"  property="cpMajor"/>
+    <result column="cp_date"    property="cpDate"/>
+    <result column="tc_name"  property="tcName"/>
+    <result column="tc_major"  property="tcMajor"/>
+    <result column="tc_date"    property="tcDate"/>
+    <result column="col_name"  property="colName"/>
+    <result column="col_major"  property="colMajor"/>
+    <result column="col_date"    property="colDate"/>
+    <result column="gs_name"  property="gsName"/>
+    <result column="gs_major"  property="gsMajor"/>
+    <result column="gs_date"    property="gsDate"/>
+  </resultMap>
+  
+    <insert id="insertEducation" parameterType="Education">
+    insert into 
+    	education(
+    	user_no,
+    	hs_name, 
+    	hs_major,
+    	hs_date,
+    	cp_name,
+    	cp_major,
+    	cp_date,
+    	tc_name,
+    	tc_major,
+    	tc_date,
+    	col_name,
+    	col_major,
+    	col_date,
+    	gs_name,
+    	gs_major,
+    	gs_date
+    	) 
+    values(
+    #{userNo},
+    #{hsName},
+    #{hsMajor},
+    #{hsDate},
+    #{cpName},
+    #{cpMajor},
+    #{cpDate},
+    #{tcName},
+    #{tcMajor},
+    #{tcDate},
+    #{colName},
+    #{colMajor},
+    #{colDate},
+    #{gsName},
+    #{gsMajor},
+    #{gsDate}
+    )
+  </insert>
+  
+  
+    <select id="findEducation" resultMap="EducationMap">
+    select * 
+    from education
+	where
+	user_no = #{userNo};
+  </select>
+  
+  <delete id="deleteEducation" parameterType="int">
+    delete from education
+    where user_no=#{userNo}
+  </delete>
+
+  </mapper>

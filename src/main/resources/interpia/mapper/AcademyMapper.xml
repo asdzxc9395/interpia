@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="interpia.dao.AcademyDao">
+ 
+ <resultMap type="Academy" id="AcademyMap">
+    <id column="academy_no"   property="academyNo"/>
+    <result column="user_no"  property="userNo"/>
+    <result column="academy_name"  property="academyName"/>
+    <result column="education_institution"  property="educationInstitution"/>
+    <result column="start_date"  property="startDate"/>
+    <result column="end_date"  property="endDate"/>
+  
+  </resultMap>
+ 
+   <insert id="insertAcademy" parameterType="Academy"
+useGeneratedKeys="true" keyColumn="academy_no" keyProperty="academyNo">
+  insert into academy
+  (user_no, 
+  academy_name, education_institution, start_date, end_date)
+  values
+  <foreach collection="AcademyFiles" item="file" separator=",">
+      (#{userNo},
+       #{file.academyName}, #{file.educationInstitution}, #{file.startDate}, #{file.endDate})
+    </foreach>
+  </insert>
+  
+ <select id="findAcademy" resultMap="AcademyMap" parameterType="int">
+	select
+		*
+	from 
+		academy a, employee e
+	where
+		e.user_no = #{userNo}
+ </select>
+ 
+   <delete id="deleteAcademy" parameterType="int">
+    delete from academy
+    where user_no=#{userNo}
+  </delete>
+ 
+ 
+ </mapper>

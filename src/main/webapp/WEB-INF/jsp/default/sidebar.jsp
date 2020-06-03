@@ -4,29 +4,43 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-       <link rel="stylesheet" href="../../css/default/sidebar.css" />
-       <link rel="stylesheet" href="../../css/checkbox.css" />
-       <link rel="stylesheet" href="../../css/table.css" />
-       <link rel="stylesheet" href="../../css/userForm.css" />
-       <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-		<script src="/interpia/script/jquery.min.js"></script>s
-
+<link href="../../css/style.css" rel="stylesheet" type="text/css">
+<link href="../../css/default/sidebar.css" rel="stylesheet" type="text/css">
+<script src="/interpia/script/jquery.min.js"></script>
+<meta charset="utf-8">
 </head>
 <body>
+<div id="wrap">
+<div id="header">
+    
+</div><!-- header end -->
+<div id="siderBar">
+<div>
+	<ul>
+		<li><img src="../../image/left_icon.gif"/><a href="list"> 기본정보</a></li>
+		<li><a href="form">  - 등록</a></li>
+		<li><img src="../../image/left_icon.gif"/> 직원명부</li>
+		<li><img src="../../image/left_icon.gif"/> 퇴직자현황</li>
+		<li><img src="../../image/left_icon.gif"/> 예비인력정보</li>
+		<li><img src="../../image/left_icon.gif"/> 거래처정보</li>
+		<li> - 등록</li>
+	</ul>
+</div>
+<div>
+	<ul>
+		<li>진행 프로젝트</li>
+		<li>현 황</li>
+	</ul>
+</div>
+<div id="currier">
+  <!------------------------------ 경력검색 ---------------------------------->
+    <img src="../../image/left_icon.gif" width="11" height="11" align="absmiddle">
+        <strong>경력검색</strong><br />
+        <input name="textfield" type="text" class="flat" size="15" maxlength="14" /> 
+          <button class="btn">검색</button>
+  <!------------------------------ 경력검색 ---------------------------------->
+</div>
+</div><!-- siderBar end --> 
 
-	<div class="wrapper">
-		<div class="sidebar">
-		<h2><a href="list">InterPia</a></h2>
-		<ul>
-			<li><a href="#"><i class="fas fa-square"></i>기본정보<br></a>
-			<h4><a href="form">- 등록</a></h4>
-			</li>
-			<li><a href="#"><i class="fas fa-square"></i>직원명부</a></li>
-			<li><a href="#"><i class="fas fa-square"></i>퇴직자현황</a></li>
-			<li><a href="#"><i class="fas fa-square"></i>예비 인력정보</a></li>
-			<li><a href="#"><i class="fas fa-square"></i>거래처 정보</a></li>
-		</ul>
-		</div>
 		
 

@@ -1,47 +1,80 @@
 package interpia.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 public class Criteria {
-
-	/* 현재 페이지 번호 */
 	private int page;
-
-	/* 한 페이지당 보여질 게시글의 갯수 */
 	private int perPageNum;
-
-	/* 특정 페이지의 게시글 시작번호, 게시글 시작 행 번호 */
-	/* 현재 페이지의 게시글 시작 번호 = (현재 페이지 번호 - 1) * 페이지당 보여줄 게시글 갯수 */
-	public int getPageStart() {
-		return (this.page-1)*perPageNum;
-	}
-
-  /* 생성자로 페이지 번호와, 페이지당 보여줄 게시글의 갯수 초기화 */
+	private String searchType;
+	private String keyword;
+	
 	public Criteria() {
 		this.page = 1;
 		this.perPageNum = 5;
+		this.searchType = null;
+		this.keyword = null;
+	}
+	
+	public String makeQuery() {
+		UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.newInstance()
+				.queryParam("page", page)
+				.queryParam("perPageNum", this.perPageNum);
+				
+		if (searchType!=null) {
+			uriComponentsBuilder
+					.queryParam("searchType", this.searchType)
+					.queryParam("keyword", this.keyword);
+		}
+		return uriComponentsBuilder.build().encode().toString();
+	}
+    
+	//pageStart를 반환
+	public int getPageStart() {
+		return (this.page - 1)*perPageNum;
 	}
 
 	public int getPage() {
 		return page;
 	}
-
 	public void setPage(int page) {
 		if(page <= 0) {
 			this.page = 1;
-		} else {
+		}else {
 			this.page = page;
 		}
 	}
-
 	public int getPerPageNum() {
 		return perPageNum;
 	}
-
-	public void setPerPageNum(int pageCount) {
-		int cnt = this.perPageNum;
-		if(pageCount != cnt) {
-			this.perPageNum = cnt;
-		} else {
-			this.perPageNum = pageCount;
+	public void setPerPageNum(int perPageNum) {
+		if(perPageNum <=0 || perPageNum > 100) {
+			this.perPageNum = 5;
+		}else {
+			this.perPageNum = perPageNum;
 		}
 	}
+	
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	@Override
+	public String toString() {
+		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + ", searchType=" + searchType + ", keyword="
+				+ keyword + "]";
+	}
+	
+
 }

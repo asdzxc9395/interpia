@@ -22,7 +22,7 @@
 										martial_status, year, payment_type, type_job, 
 										employment_type, adress, number, email, tech_grade, alcohol)
 	values ('e', 'e', '950104-1185130', '1995-01-04', 0,
-			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');
+			0, 0, 0, 0, 0, '장안벚꽃로107', 01086997092, 'asdzxc9395@naver.com', 0, '1병');		
 				insert into employee (kor_name, eng_name, resident_no, birth_date, sex, 
 										martial_status, year, payment_type, type_job, 
 										employment_type, adress, number, email, tech_grade, alcohol)
@@ -34,9 +34,8 @@
 	values ('손세린', 'Elie', '970702', '1997-07-02', 0,
 			0, 0, 0, 0, 0, '숙대꽃술올라가면있어', 01055915297,'shelin0702@naver.com', 0, '1잔');
 			
-	insert into education (user_no, education, major, graduation_year,
-										education_name, start_date, end_date, education_institution)
-	values (1, '청운대학교', '조리과', '2018-02-28', '비트캠프 강남점', '2019-12-02', '2020-06-02', '비트컴퓨터');
+	insert into education (user_no, education_name, major, graduation_date)
+	values (2, 'cc', 'dd', '2018-02-28');
 	
 	insert into career (user_no, company_name, position, join_date, leave_date, charge_position)
 	values (1, '비드넷씨엔씨', '신입사원', '2020-05-25', '2025-05-25', '아직은 모르겠습니다.');

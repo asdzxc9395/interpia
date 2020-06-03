@@ -3,8 +3,6 @@ package interpia.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.eomcs.lms.domain.Lesson;
-
 import interpia.domain.Criteria;
 import interpia.domain.Employee;
 
@@ -23,8 +21,8 @@ public interface EmployeeDao {
 	
 	List<Employee> findByKeyword(Map<String, Object> params) throws Exception;
 
-	public List<Map<String, Object>> pageList(Criteria cri);
+	List<Employee> listPage(Criteria cri) throws Exception;
 	
-	public int countList();
+	public int getTotalCount(Criteria cri) throws Exception;
 	
 }

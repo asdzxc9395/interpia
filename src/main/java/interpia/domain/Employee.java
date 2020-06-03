@@ -2,6 +2,7 @@ package interpia.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class Employee implements Serializable{
 	
@@ -26,6 +27,10 @@ public class Employee implements Serializable{
 	private String techGrade;
 	private String alcohol;
 	
+// 학력, 교육, 기술등급, 자격증에 대한 리스트를 받아올 소스
+	
+	List<Academy> academyFiles;
+	
 	
 	@Override
 	public String toString() {
@@ -35,6 +40,18 @@ public class Employee implements Serializable{
 				+ ", typeJob=" + typeJob + ", employmentType=" + employmentType + ", adress=" + adress + ", number="
 				+ number + ", email=" + email + ", techGrade=" + techGrade + ", alcohol=" + alcohol + "]";
 	}
+	
+	
+	public List<Academy> getAcademyFiles() {
+		return academyFiles;
+	}
+
+
+	public void setAcademyFiles(List<Academy> academyFiles) {
+		this.academyFiles = academyFiles;
+	}
+
+
 	public int getUserNo() {
 		return userNo;
 	}
