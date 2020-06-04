@@ -11,7 +11,7 @@ public class Technology implements Serializable{
 	private Employee employee;
 	private int techNo;
 	private String techName;
-	private Date proficiency;
+	private int proficiency;
 	
 	@Override
 	public String toString() {
@@ -43,11 +43,11 @@ public class Technology implements Serializable{
 		this.techName = techName;
 	}
 
-	public Date getProficiency() {
+	public int getProficiency() {
 		return proficiency;
 	}
 
-	public void setProficiency(Date proficiency) {
+	public void setProficiency(int proficiency) {
 		this.proficiency = proficiency;
 	}
 	

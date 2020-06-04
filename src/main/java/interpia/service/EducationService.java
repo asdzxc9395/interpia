@@ -8,7 +8,7 @@ public interface EducationService {
 	
 	int delete(int no) throws Exception;
 	
-	int update(Education Education) throws Exception;
+	int update(Education education) throws Exception;
 	
 	Education get(int no) throws Exception;
 	

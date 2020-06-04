@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="interpia.dao.TechnologyDao">
+ 
+ <resultMap type="Technology" id="TechnologyMap">
+    <id column="tech_no"   property="techNo"/>
+    <result column="user_no"  property="userNo"/>
+    <result column="tech_name"  property="techName"/>
+    <result column="proficiency"  property="proficiency"/>
+  </resultMap>
+ 
+   <insert id="insert" parameterType="Technology">
+  insert into technology
+  (user_no, 
+  techName, proficiency)
+  values
+      (#{user_no},
+       #{tech_name}, #{proficiency})
+  </insert>
+  
+ <select id="findByNo" resultMap="TechnologyMap" parameterType="int">
+	select
+		*
+	from 
+		technology t, employee e
+	where
+		e.user_no = #{userNo}
+ </select>
+ 
+   <delete id="delete" parameterType="int">
+    delete from technology
+    where user_no=#{userNo}
+  </delete>
+ 
+ 	<update id="update" parameterType="Technology">
+		update technology
+		<set>
+			<if test="techName != null and techName != ''">tech_name=#{techName},</if>
+			<if test="proficiency != null and proficiency != ''">proficiency=#{proficiency},</if>
+		</set>
+		where
+		user_no = #{userNo}
+	</update>
+ </mapper>

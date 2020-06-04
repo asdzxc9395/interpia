@@ -17,22 +17,22 @@ public class AcademyServiceImpl implements AcademyService{
 
 	@Override
 	public void add(Academy academy) throws Exception {
-		academyDao.insertAcademy(academy);
+		academyDao.insert(academy);
 	}
 
 	@Override
 	public int delete(int no) throws Exception {
-		return academyDao.deleteAcademy(no);
+		return academyDao.delete(no);
 	}
 
 	@Override
 	public int update(Academy academy) throws Exception {
-		return academyDao.updateAcademy(academy);
+		return academyDao.update(academy);
 	}
 
 	@Override
 	public Academy get(int no) throws Exception {
-		return academyDao.findAcademy(no);
+		return academyDao.findByNo(no);
 	}
 	
 	

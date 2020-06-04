@@ -10,6 +10,7 @@ public class Academy implements Serializable{
 	
 	private Employee employee;
 	private int academyNo;
+	private int userNo;
 	private String academyName;
 	private String educationInstitution;
 	private Date startDate;
@@ -35,6 +36,16 @@ public class Academy implements Serializable{
 				+ ", education_institution=" + educationInstitution + ", startDate=" + startDate + ", endDate="
 				+ endDate + "]";
 	}
+	
+	
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 	public Employee getEmployee() {
 		return employee;
 	}

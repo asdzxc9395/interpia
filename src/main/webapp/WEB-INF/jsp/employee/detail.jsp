@@ -31,7 +31,7 @@
                     <tr align="center" bgcolor="F8F8F8"> 
                       <td height="26" align="center" bgcolor="#E4EBF1" style="padding-right:10"><table width="600" border="0" cellspacing="0" cellpadding="0">
                           <tr> 
-                            <td align="center"><strong>교육정보 | 자격증. 보유기술정보 | 프로젝트 정보 |경력정보 | 근무정보</strong></td>
+                            <td align="center"><strong>교육정보 | <a href="../education/detail?no=${employee.userNo}">자격증. 보유기술정보</a> | 프로젝트 정보 |경력정보 | 근무정보</strong></td>
                           </tr>
                         </table></td>
                     </tr>

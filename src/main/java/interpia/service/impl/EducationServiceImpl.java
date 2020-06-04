@@ -17,22 +17,22 @@ public class EducationServiceImpl implements EducationService{
 
 	@Override
 	public void add(Education education) throws Exception {
-		educationDao.insertEducation(education);
+		educationDao.insert(education);
 	}
 
 	@Override
 	public int delete(int no) throws Exception {
-		return educationDao.deleteEducation(no);
+		return educationDao.delete(no);
 	}
 
 	@Override
-	public int update(Education Education) throws Exception {
-		return educationDao.updateEducation(Education);
+	public int update(Education education) throws Exception {
+		return educationDao.update(education);
 	}
 
 	@Override
 	public Education get(int no) throws Exception {
-		return educationDao.findEducation(no);
+		return educationDao.findByNo(no);
 	}
 	
 }

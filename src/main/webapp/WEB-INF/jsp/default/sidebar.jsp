@@ -17,7 +17,7 @@
 <div id="siderBar">
 <div>
 	<ul>
-		<li><img src="../../image/left_icon.gif"/><a href="list"> 기본정보</a></li>
+		<li><img src="../../image/left_icon.gif"/><a href="../employee/list"> 기본정보</a></li>
 		<li><a href="form">  - 등록</a></li>
 		<li><img src="../../image/left_icon.gif"/> 직원명부</li>
 		<li><img src="../../image/left_icon.gif"/> 퇴직자현황</li>

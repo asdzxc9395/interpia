@@ -6,7 +6,7 @@
 <mapper namespace="interpia.dao.EducationDao">
 
   <resultMap type="Education" id="EducationMap">
-    <id column="education_no"   property="educationNo"/>
+    <id column="education_no"   property="eudcationNo"/>
     <result column="user_no"  property="userNo"/>
     <result column="hs_name"  property="hsName"/>
     <result column="hs_major"  property="hsMajor"/>
@@ -25,7 +25,7 @@
     <result column="gs_date"    property="gsDate"/>
   </resultMap>
   
-    <insert id="insertEducation" parameterType="Education">
+    <insert id="insert" parameterType="Education">
     insert into 
     	education(
     	user_no,
@@ -41,9 +41,6 @@
     	col_name,
     	col_major,
     	col_date,
-    	gs_name,
-    	gs_major,
-    	gs_date
     	) 
     values(
     #{userNo},
@@ -59,23 +56,40 @@
     #{colName},
     #{colMajor},
     #{colDate},
-    #{gsName},
-    #{gsMajor},
-    #{gsDate}
     )
   </insert>
   
   
-    <select id="findEducation" resultMap="EducationMap">
+    <select id="findByNo" resultMap="EducationMap">
     select * 
     from education
 	where
 	user_no = #{userNo};
   </select>
   
-  <delete id="deleteEducation" parameterType="int">
+  <delete id="delete" parameterType="int">
     delete from education
     where user_no=#{userNo}
   </delete>
 
+	<update id="update" parameterType="Education">
+		update education
+	<set>
+			<if test="hsName != null and hsName != ''">hs_name=#{hsName},</if>
+			<if test="hsMajor != null and hsMajor != ''">hs_major=#{hsMajor},</if>
+			<if test="hsDate != null">hs_date=#{hsDate},</if>
+			<if test="tcName != null and hsName != ''">tc_name=#{tcName},</if>
+			<if test="tcMajor != null and hsMajor != ''">tc_major=#{tcMajor},</if>
+			<if test="tcDate != null">tc_date=#{tcDate},</if>
+			<if test="cpName != null and cpName != ''">cp_name=#{cpName},</if>
+			<if test="cpMajor != null and cpMajor != ''">cp_major=#{cpMajor},</if>
+			<if test="cpDate != null">cp_date=#{cpDate},</if>
+			<if test="colName != null and colName != ''">col_name=#{colName},</if>
+			<if test="colMajor != null and colMajor != ''">col_major=#{colMajor},</if>
+			<if test="colDate != null">col_date=#{colDate}</if>
+	</set>
+		where user_no = #{userNo}
+	</update>
+	
+	
   </mapper>

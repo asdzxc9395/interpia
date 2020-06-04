@@ -52,4 +52,9 @@
 	insert into ide (user_no, project_no, model, language, os, dbms, tool, communication, etc) 
 	values (1, 1, 'IBM', 'JAVA', 'window', 'mariadb', 'eclipse', 'socket', 'etc');
 	
+  insert into academy
+  (user_no, 
+  academy_name, education_institution)
+  values (1, 2, 3);
+	
 	

@@ -15,7 +15,16 @@
   
   </resultMap>
  
-   <insert id="insertAcademy" parameterType="Academy"
+   <insert id="insert" parameterType="Academy">
+  insert into academy
+  (user_no, 
+  academy_name, education_institution, start_date, end_date)
+  values
+      (#{userNo},
+       #{academyName}, #{educationInstitution}, #{startDate}, #{endDate})
+  </insert>
+  
+<!--      <insert id="insertAcademy" parameterType="Academy"
 useGeneratedKeys="true" keyColumn="academy_no" keyProperty="academyNo">
   insert into academy
   (user_no, 
@@ -25,9 +34,8 @@ useGeneratedKeys="true" keyColumn="academy_no" keyProperty="academyNo">
       (#{userNo},
        #{file.academyName}, #{file.educationInstitution}, #{file.startDate}, #{file.endDate})
     </foreach>
-  </insert>
-  
- <select id="findAcademy" resultMap="AcademyMap" parameterType="int">
+  </insert> -->
+ <select id="findByNo" resultMap="AcademyMap" parameterType="int">
 	select
 		*
 	from 
@@ -41,5 +49,15 @@ useGeneratedKeys="true" keyColumn="academy_no" keyProperty="academyNo">
     where user_no=#{userNo}
   </delete>
  
- 
+ 	<update id="update" parameterType="Academy">
+		update academy
+		<set>
+			<if test="academyName != null and academyName != ''">academy_name=#{academyName},</if>
+			<if test="educationInstitution != null and educationInstitution != ''">education_institution=#{educationInstitution},</if>
+			<if test="startDate != null and startDate != ''">start_date=#{startDate},</if>
+			<if test="endDate != null">end_date=#{endDate},</if>
+		</set>
+		where
+		user_no = #{userNo}
+	</update>
  </mapper>
