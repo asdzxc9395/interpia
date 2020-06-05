@@ -8,23 +8,35 @@
  <resultMap type="Academy" id="AcademyMap">
     <id column="academy_no"   property="academyNo"/>
     <result column="user_no"  property="userNo"/>
-    <result column="academy_name"  property="academyName"/>
-    <result column="education_institution"  property="educationInstitution"/>
-    <result column="start_date"  property="startDate"/>
-    <result column="end_date"  property="endDate"/>
+    <result column="academy_name1"  property="academyName1"/>
+    <result column="education_institution1"  property="educationInstitution1"/>
+    <result column="start_date1"  property="startDate1"/>
+    <result column="end_date1"  property="endDate1"/>
+    <result column="academy_name2"  property="academyName2"/>
+    <result column="education_institution2"  property="educationInstitution2"/>
+    <result column="start_date2"  property="startDate2"/>
+    <result column="end_date2"  property="endDate2"/>
+    <result column="academy_name3"  property="academyName3"/>
+    <result column="education_institution3"  property="educationInstitution3"/>
+    <result column="start_date3"  property="startDate3"/>
+    <result column="end_date3"  property="endDate3"/>
   
   </resultMap>
  
-   <insert id="insert" parameterType="Academy">
+    <insert id="insert" parameterType="Academy">
   insert into academy
   (user_no, 
-  academy_name, education_institution, start_date, end_date)
+  academy_name1, education_institution1, start_date1, end_date1,
+  academy_name2, education_institution2, start_date2, end_date2,
+  academy_name3, education_institution3, start_date3, end_date3)
   values
       (#{userNo},
-       #{academyName}, #{educationInstitution}, #{startDate}, #{endDate})
-  </insert>
+       #{academyName1}, #{educationInstitution1}, #{startDate1}, #{endDate1},
+       #{academyName2}, #{educationInstitution2}, #{startDate2}, #{endDate2},
+       #{academyName3}, #{educationInstitution3}, #{startDate3}, #{endDate3})
+  </insert> 
   
-<!--      <insert id="insertAcademy" parameterType="Academy"
+<!--       <insert id="insert" parameterType="Academy"
 useGeneratedKeys="true" keyColumn="academy_no" keyProperty="academyNo">
   insert into academy
   (user_no, 
@@ -34,30 +46,39 @@ useGeneratedKeys="true" keyColumn="academy_no" keyProperty="academyNo">
       (#{userNo},
        #{file.academyName}, #{file.educationInstitution}, #{file.startDate}, #{file.endDate})
     </foreach>
-  </insert> -->
+  </insert>  -->
  <select id="findByNo" resultMap="AcademyMap" parameterType="int">
 	select
 		*
 	from 
-		academy a, employee e
+		academy
 	where
-		e.user_no = #{userNo}
+		user_no = #{userNo}
  </select>
  
-   <delete id="deleteAcademy" parameterType="int">
+   <delete id="delete" parameterType="int">
     delete from academy
     where user_no=#{userNo}
   </delete>
- 
- 	<update id="update" parameterType="Academy">
+  
+  	<update id="update" parameterType="Academy">
 		update academy
-		<set>
-			<if test="academyName != null and academyName != ''">academy_name=#{academyName},</if>
-			<if test="educationInstitution != null and educationInstitution != ''">education_institution=#{educationInstitution},</if>
-			<if test="startDate != null and startDate != ''">start_date=#{startDate},</if>
-			<if test="endDate != null">end_date=#{endDate},</if>
-		</set>
-		where
-		user_no = #{userNo}
+	<set>
+			<if test="academyName1 != null and academyName1 != ''">academy_name1=#{academyName1},</if>
+			<if test="educationInstitution1 != null and educationInstitution1 != ''">education_institution1=#{educationInstitution1},</if>
+			<if test="startDate1 != null">start_date1=#{startDate1},</if>
+			<if test="endDate1 != null">end_date1=#{endDate1},</if>
+			<if test="academyName2 != null and academyName2 != ''">academy_name2=#{academyName2},</if>
+			<if test="educationInstitution2 != null and educationInstitution2 != ''">education_institution2=#{educationInstitution2},</if>
+			<if test="startDate2 != null">start_date2=#{startDate2},</if>
+			<if test="endDate2 != null">end_date2=#{endDate2},</if>
+			<if test="academyName3 != null and academyName3 != ''">academy_name3=#{academyName3},</if>
+			<if test="educationInstitution3 != null and educationInstitution3 != ''">education_institution3=#{educationInstitution3},</if>
+			<if test="startDate3 != null">start_date3=#{startDate3},</if>
+			<if test="endDate3 != null">end_date3=#{endDate3}</if>
+	</set>
+		where user_no = #{userNo}
 	</update>
+ 
+
  </mapper>

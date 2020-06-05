@@ -29,12 +29,11 @@ public class Employee implements Serializable{
 	
 // 학력, 교육, 기술등급, 자격증에 대한 리스트를 받아올 소스
 	
-	List<Academy> academyFiles;
 	
 	
 	@Override
 	public String toString() {
-		return "Certificate [userNo=" + userNo + ", korName=" + korName + ", engName=" + engName + ", chiName="
+		return "Employee [userNo=" + userNo + ", korName=" + korName + ", engName=" + engName + ", chiName="
 				+ chiName + ", residentNo=" + residentNo + ", image=" + image + ", birthDate=" + birthDate + ", sex="
 				+ sex + ", martialStatus=" + martialStatus + ", year=" + year + ", paymentType=" + paymentType
 				+ ", typeJob=" + typeJob + ", employmentType=" + employmentType + ", adress=" + adress + ", number="
@@ -42,14 +41,7 @@ public class Employee implements Serializable{
 	}
 	
 	
-	public List<Academy> getAcademyFiles() {
-		return academyFiles;
-	}
 
-
-	public void setAcademyFiles(List<Academy> academyFiles) {
-		this.academyFiles = academyFiles;
-	}
 
 
 	public int getUserNo() {

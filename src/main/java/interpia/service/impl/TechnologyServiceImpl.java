@@ -26,8 +26,9 @@ public class TechnologyServiceImpl implements TechnologyService{
 	}
 
 	@Override
-	public int update(Technology technology) throws Exception {
-		return technologyDao.update(technology);
+	public void update(Technology technology) throws Exception {
+		 technologyDao.delete(technology.getUserNo());
+		 technologyDao.insert(technology);
 	}
 
 	@Override

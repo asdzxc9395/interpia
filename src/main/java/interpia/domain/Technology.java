@@ -1,7 +1,7 @@
 package interpia.domain;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.List;
 
 public class Technology implements Serializable{
 
@@ -9,14 +9,44 @@ public class Technology implements Serializable{
 	
 	
 	private Employee employee;
+	private int userNo;
 	private int techNo;
 	private String techName;
 	private int proficiency;
+	List<Technology> files;
+	
+	public Technology() {
+	}
+	public Technology(int userNo, String techName, int proficiency) {
+	this.userNo = userNo;
+	this.techName = techName;
+	this.proficiency = proficiency;
+	}
+	public Technology(int techNo, int userNo, String techName, int proficiency) {
+	this(userNo, techName, proficiency);
+	this.techNo= techNo;
+	}
 	
 	@Override
 	public String toString() {
 		return "Technology [employee=" + employee + ", techNo=" + techNo + ", techName=" + techName + ", proficiency="
 				+ proficiency + "]";
+	}
+	
+	public List<Technology> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<Technology> files) {
+		this.files = files;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
 	}
 
 	public Employee getEmployee() {

@@ -1,5 +1,7 @@
 package interpia.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import interpia.dao.AcademyDao;
@@ -8,9 +10,9 @@ import interpia.service.AcademyService;
 
 @Component
 public class AcademyServiceImpl implements AcademyService{
-	
+
 	AcademyDao academyDao;
-	
+
 	public AcademyServiceImpl(AcademyDao academyDao) {
 		this.academyDao = academyDao;
 	}
@@ -21,6 +23,11 @@ public class AcademyServiceImpl implements AcademyService{
 	}
 
 	@Override
+	public Academy get(int no) throws Exception {
+		return academyDao.findByNo(no);
+	}
+
+	@Override
 	public int delete(int no) throws Exception {
 		return academyDao.delete(no);
 	}
@@ -28,12 +35,10 @@ public class AcademyServiceImpl implements AcademyService{
 	@Override
 	public int update(Academy academy) throws Exception {
 		return academyDao.update(academy);
+		
 	}
 
-	@Override
-	public Academy get(int no) throws Exception {
-		return academyDao.findByNo(no);
-	}
-	
-	
+
+
+
 }

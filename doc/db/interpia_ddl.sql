@@ -34,8 +34,8 @@
 	values ('손세린', 'Elie', '970702', '1997-07-02', 0,
 			0, 0, 0, 0, 0, '숙대꽃술올라가면있어', 01055915297,'shelin0702@naver.com', 0, '1잔');
 			
-	insert into education (user_no, education_name, major, graduation_date)
-	values (2, 'cc', 'dd', '2018-02-28');
+	insert into education (user_no, hs_name)
+	values (2, 'cc');
 	
 	insert into career (user_no, company_name, position, join_date, leave_date, charge_position)
 	values (1, '비드넷씨엔씨', '신입사원', '2020-05-25', '2025-05-25', '아직은 모르겠습니다.');
@@ -51,10 +51,14 @@
 	
 	insert into ide (user_no, project_no, model, language, os, dbms, tool, communication, etc) 
 	values (1, 1, 'IBM', 'JAVA', 'window', 'mariadb', 'eclipse', 'socket', 'etc');
-	
-  insert into academy
-  (user_no, 
-  academy_name, education_institution)
-  values (1, 2, 3);
+		
+	  insert into education
+	  (user_no, 
+	  hs_name, hs_major)
+	  values (1, 2, 3);
+	  insert into academy
+	  (user_no,
+	  academy_name1, academy_name2, academy_name3)
+	  values (1, 2, 3, 4);
 	
 	

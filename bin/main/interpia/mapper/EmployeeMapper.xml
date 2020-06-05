@@ -24,12 +24,12 @@
 		<result column="tech_grade" property="techGrade" />
 		<result column="alcohol" property="alcohol" />
 
-		<collection property="academyFiles" ofType="Academy">
+<!-- 		<collection property="academyFiles" ofType="Academy">
 			<id column="education_no" property="educationNo" />
 			<result column="education_name" property="educationName" />
 			<result column="major" property="major" />
 			<result column="graduation_date" property="graduationDate" />
-		</collection>
+		</collection> -->
 	</resultMap>
 
 	<select id="findAll" resultMap="EmployeeMap">

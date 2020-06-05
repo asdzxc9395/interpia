@@ -18,8 +18,10 @@
   (user_no, 
   certificate_name, acquistion_date)
   values
+  <foreach collection="files" item="file" separator=",">
       (#{userNo},
-       #{certificateName}, #{acquistionDate})
+       #{file.certificateName}, #{file.acquistionDate})
+       </foreach>
   </insert>
   
  <select id="findByNo" resultMap="CertificateMap" parameterType="int">

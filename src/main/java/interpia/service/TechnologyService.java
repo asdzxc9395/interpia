@@ -8,7 +8,7 @@ public interface TechnologyService {
 	
 	int delete(int no) throws Exception;
 	
-	int update(Technology technology) throws Exception;
+	void update(Technology technology) throws Exception;
 	
 	Technology get(int no) throws Exception;
 }

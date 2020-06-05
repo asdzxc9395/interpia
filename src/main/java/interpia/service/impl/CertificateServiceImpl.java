@@ -26,8 +26,9 @@ public class CertificateServiceImpl implements CertificateService{
 	}
 
 	@Override
-	public int update(Certificate certificate) throws Exception {
-		return certificateDao.update(certificate);
+	public void update(Certificate certificate) throws Exception {
+		certificateDao.delete(certificate.getUserNo());
+		certificateDao.insert(certificate);
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package interpia.domain;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 public class Certificate implements Serializable{
 
@@ -9,15 +10,23 @@ public class Certificate implements Serializable{
 	
 	
 	private Employee employee;
+	private int userNo;
 	private int certificateNo;
 	private String certificateName;
 	private Date acquistionDate;
+	List<Certificate> files;
 	
 	
 	public Certificate() {}
+	public Certificate(int userNo, String certificateName, Date acquistionDate) {
+		this.userNo = userNo;
+		this.certificateName = certificateName;
+		this.acquistionDate = acquistionDate;
+	}
 	
-	public Certificate(String certificateName, Date acquistionDate) {
-		
+	public Certificate(int certificateNo, int userNo, String certificateName, Date acquistionDate) {
+		this(userNo, certificateName, acquistionDate);
+		this.certificateNo = certificateNo;
 	}
 	
 	@Override
@@ -25,6 +34,23 @@ public class Certificate implements Serializable{
 		return "Certificate [employee=" + employee + ", certificateNo=" + certificateNo + ", certificateName="
 				+ certificateName + ", acquistionDate=" + acquistionDate + "]";
 	}
+	
+	public List<Certificate> getFiles() {
+		return files;
+	}
+
+	public void setFiles(List<Certificate> files) {
+		this.files = files;
+	}
+
+	public int getUserNo() {
+		return userNo;
+	}
+
+	public void setUserNo(int userNo) {
+		this.userNo = userNo;
+	}
+
 	public Employee getEmployee() {
 		return employee;
 	}

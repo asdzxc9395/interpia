@@ -17,8 +17,10 @@
   (user_no, 
   techName, proficiency)
   values
+  <foreach collection="files" item="file" separator=",">
       (#{user_no},
-       #{tech_name}, #{proficiency})
+       #{file.tech_name}, #{file.proficiency})
+       </foreach>
   </insert>
   
  <select id="findByNo" resultMap="TechnologyMap" parameterType="int">

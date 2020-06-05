@@ -112,10 +112,18 @@ ALTER TABLE technology
 CREATE TABLE academy (
 		academy_no INTEGER NOT NULL,
 		user_no INTEGER NULL,
-		academy_name VARCHAR(50) NULL,
-		start_date DATE NULL,
-		end_date DATE NULL,
-		education_institution VARCHAR(50) NULL
+		academy_name1 VARCHAR(50) NULL,
+		start_date1 DATE NULL,
+		end_date1 DATE NULL,
+		education_institution1 VARCHAR(50) NULL,
+		academy_name2 VARCHAR(50) NULL,
+		start_date2 DATE NULL,
+		end_date2 DATE NULL,
+		education_institution2 VARCHAR(50) NULL,
+		academy_name3 VARCHAR(50) NULL,
+		start_date3 DATE NULL,
+		end_date3 DATE NULL,
+		education_institution3 VARCHAR(50) NULL
 );
 
 -- 교육
@@ -183,13 +191,24 @@ CREATE TABLE ide (
 
 -- 경력정보
 CREATE TABLE career (
+		career_no INTEGER NOT NULL,
 		user_no INTEGER NOT NULL,
-		company_name VARCHAR(30) NOT NULL,
+		company_name VARCHAR(30) NULL,
 		position VARCHAR(20) NULL,
 		join_date DATE NULL,
 		leave_date DATE NULL,
 		charge_position VARCHAR(50) NULL
 );
+
+-- 경력정보
+ALTER TABLE career
+	ADD CONSTRAINT PK_career -- 경력정보 기본키
+	PRIMARY KEY (
+		career_no -- 경력번호
+	);
+
+ALTER TABLE career
+	MODIFY COLUMN career_no INTEGER NOT NULL AUTO_INCREMENT;
 
 -- 근무정보
 CREATE TABLE working (

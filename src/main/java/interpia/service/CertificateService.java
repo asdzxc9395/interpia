@@ -8,7 +8,7 @@ public interface CertificateService {
 	
 	int delete(int no) throws Exception;
 	
-	int update(Certificate certificate) throws Exception;
+	void update(Certificate certificate) throws Exception;
 	
 	Certificate get(int no) throws Exception;
 }

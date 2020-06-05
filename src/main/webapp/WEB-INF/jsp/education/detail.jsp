@@ -5,7 +5,8 @@
 
 <jsp:include page="../default/sidebar.jsp" />
  <form action='update' method='post'>
-  <input name='userNo' type='hidden' value='${employee.userNo}'>
+  <input name='userNo' type='hidden' value='${education.userNo}'>
+  <input name='userNo' type='hidden' value='${academy.userNo}'>
 <div id="contents">
 	<div id="content">
 		<table width="640" border="0" cellspacing="0" cellpadding="0">
@@ -29,10 +30,11 @@
                       <td height="26" align="center" bgcolor="#E4EBF1" style="padding-right:10"><table width="600" border="0" cellspacing="0" cellpadding="0">
                           <tr> 
                             <td align="center"><strong>
-                            <a href="../employee/detail?no=${employee.userNo}">교육정보</a>
-                             | <a href="../education/detail?no=${employee.userNo}">자격증. 보유기술정보</a>
-                             | <a href="../certificate/detail?no=${employee.userNo}">프로젝트 정보 </a>
-                             |<a href="#">경력정보 </a>
+                            <a href="../employee/detail?no=${employee.userNo}">기본정보</a>
+                             | <a href="../education/detail?no=${employee.userNo}">교육정보</a>
+                             | <a href="../certificate/detail?no=${employee.userNo}">자격증. 보유기술정보 </a>
+                             |<a href="#">프로젝트 정보 </a>
+                             | <a href="../career/detail?no=${employee.userNo}">경력정보</a>
                              | <a href="#">근무정보</a>
                               </strong></td>
                           </tr>
@@ -83,7 +85,7 @@
                       <table width="517" border="0" cellpadding="0" cellspacing="0">
                         <tr align="left">
                           <td width="109"><strong>
-                            <input name="hsName" type="text" size="15" value='${education.hsName}'>
+                            <input name="education.hsName" type="text" size="15" value='${education.hsName}'>
                           </strong></td>
                           <td width="70"><strong>고등학교</strong></td>
                           <td width="108"><strong>
@@ -181,13 +183,13 @@
           <td height="13" align="center"><table width="600" border="0" cellspacing="0" cellpadding="0">
               <tr> 
                 <td bgcolor="#CCCCCC"><table width="600" border="0" cellspacing="1" cellpadding="0">
-					<c:forEach var="item" items="${list}">
+					<!--  -->
                     <tr> 
                       <td height="40" align="center" bgcolor="#E4EBF1"><table width="548" border="0" cellpadding="1" cellspacing="1">
                         <tr align="left">
                           <td width="68" align="center"><strong>교육명</strong></td>
                           <td width="473"><strong>
-                            <input name="academyName" type="text" size="70" value='${item.academyName}'>
+                            <input name="academyName" type="text" size="70" value='${academy.academyName1}'>
                                                     </strong><strong>                          </strong><strong>                          </strong></td>
                           </tr>
                         <tr align="left">
@@ -195,22 +197,78 @@
                             <tr>
                               <td width="72"><strong>시작일</strong></td>
                               <td width="102"><strong>
-                                <input name="startDate" type="Date" size="6" value='${item.startDate}'>
+                                <input name="startDate" type="Date" size="6" value='${academy.startDate1}'>
                               </strong></td>
                               <td width="70"><strong>종료일</strong></td>
                               <td width="91"><strong>
-                                <input name="endDate" type="Date" size="6"  value='${item.endDate}'>
+                                <input name="endDate" type="Date" size="6"  value='${academy.endDate1}'>
                               </strong></td>
                               <td width="60"><strong>교육기간</strong></td>
                               <td width="139"><strong>
-                                <input name="educationInstitution" type="text" size="8"  value='${item.educationInstitution}'>
+                                <input name="educationInstitution" type="text" size="8"  value='${academy.educationInstitution1}'>
                               </strong></td>
                             </tr>
                           </table></td>
                           </tr>
                       </table></td>
                     </tr>
-                    </c:forEach>
+                    <tr> 
+                      <td height="40" align="center" bgcolor="#E4EBF1"><table width="548" border="0" cellpadding="1" cellspacing="1">
+                        <tr align="left">
+                          <td width="68" align="center"><strong>교육명</strong></td>
+                          <td width="473"><strong>
+                            <input name="academyName" type="text" size="70" value='${academy.academyName2}'>
+                                                    </strong><strong>                          </strong><strong>                          </strong></td>
+                          </tr>
+                        <tr align="left">
+                          <td colspan="2"><table width="534" height="17" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td width="72"><strong>시작일</strong></td>
+                              <td width="102"><strong>
+                                <input name="startDate" type="Date" size="6" value='${academy.startDate2}'>
+                              </strong></td>
+                              <td width="70"><strong>종료일</strong></td>
+                              <td width="91"><strong>
+                                <input name="endDate" type="Date" size="6"  value='${academy.endDate2}'>
+                              </strong></td>
+                              <td width="60"><strong>교육기간</strong></td>
+                              <td width="139"><strong>
+                                <input name="educationInstitution" type="text" size="8"  value='${academy.educationInstitution2}'>
+                              </strong></td>
+                            </tr>
+                          </table></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                    <tr> 
+                      <td height="40" align="center" bgcolor="#E4EBF1"><table width="548" border="0" cellpadding="1" cellspacing="1">
+                        <tr align="left">
+                          <td width="68" align="center"><strong>교육명</strong></td>
+                          <td width="473"><strong>
+                            <input name="academyName" type="text" size="70" value='${academy.academyName3}'>
+                                                    </strong><strong>                          </strong><strong>                          </strong></td>
+                          </tr>
+                        <tr align="left">
+                          <td colspan="2"><table width="534" height="17" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                              <td width="72"><strong>시작일</strong></td>
+                              <td width="102"><strong>
+                                <input name="startDate" type="Date" size="6" value='${academy.startDate3}'>
+                              </strong></td>
+                              <td width="70"><strong>종료일</strong></td>
+                              <td width="91"><strong>
+                                <input name="endDate" type="Date" size="6"  value='${academy.endDate3}'>
+                              </strong></td>
+                              <td width="60"><strong>교육기간</strong></td>
+                              <td width="139"><strong>
+                                <input name="educationInstitution" type="text" size="8"  value='${academy.educationInstitution3}'>
+                              </strong></td>
+                            </tr>
+                          </table></td>
+                          </tr>
+                      </table></td>
+                    </tr>
+                    
                   </table></td>
               </tr>
             </table></td>
