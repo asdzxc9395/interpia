@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <jsp:include page="../default/sidebar.jsp" />
-<form action='add' method='post'>
+<form action='../education/add' method='post'>
 <div id="contents">
 	<div id="content">
 		<table width="640" border="0" cellspacing="0" cellpadding="0">
@@ -26,9 +26,15 @@
                     </tr>
                     <tr align="center" bgcolor="F8F8F8"> 
                       <td height="26" align="center" bgcolor="#E4EBF1" style="padding-right:10"><table width="600" border="0" cellspacing="0" cellpadding="0">
-                          <tr> 
-                            <td align="center"><strong>교육정보 | 자격증. 보유기술정보 | 프로젝트 
-                              정보 |경력정보 | 근무정보</strong></td>
+                           <tr> 
+                            <td align="center"><strong>
+                            <a href="../employee/form?no=${employee.userNo}">기본정보</a>
+                             | <a href="../education/form?no=${employee.userNo}">교육정보</a>
+                             | <a href="../certificate/form?no=${employee.userNo}">자격증. 보유기술정보 </a>
+                             |<a href="../project/form?no=${employee.userNo}">프로젝트 정보 </a>
+                             | <a href="../career/form?no=${employee.userNo}">경력정보</a>
+                             | <a href="../working/form?no=${employee.userNo}">근무정보</a>
+                              </strong></td>
                           </tr>
                         </table></td>
                     </tr>
@@ -49,10 +55,10 @@
                     <tr> 
                       <td width="97" height="31" align="center" bgcolor="#E4EBF1"><strong>사원명</strong></td>
                       <td width="128" align="center" bgcolor="#E4EBF1">
-                      <input name='userNo' type='text' value='${employee.userNo}' readonly><br></td>
+                      <input name='korName' type='text' value='${employee.korName}' readonly="readonly"><br></td>
                       <td width="131" align="center" bgcolor="#E4EBF1"><strong>주민등록번호</strong></td>
                       <td width="239" align="center" bgcolor="#E4EBF1">
-                      <input name='residentNo' type='text' value='${employee.residentNo}' readonly></td>
+                      <input name='residentNo' type='text' value='${employee.residentNo}' readonly="readonly"></td>
                     </tr>
                   </table></td>
               </tr>
@@ -86,7 +92,7 @@
                           </strong></td>
                           <td width="56"><strong>과 졸업</strong></td>
                           <td width="67"><strong>
-                            <input name="hsDate" type="Date" size="8" >
+                            <input name="hsDate" type="Date" size="8" value="2020-06-09">
                           </strong></td>
                           <td width="32"><strong>
                             
@@ -107,7 +113,7 @@
                           </strong></td>
                           <td width="56"><strong>과 졸업</strong></td>
                           <td width="67"><strong>
-                            <input name="cpDate" type="Date" size="8">
+                            <input name="cpDate" type="Date" size="8"  value="2020-06-09">
                           </strong></td>
                           <td width="32"><strong>
                             
@@ -128,7 +134,7 @@
                           </strong></td>
                           <td width="56"><strong>과 졸업</strong></td>
                           <td width="67"><strong>
-                            <input name="tcDate" type="Date" size="8">
+                            <input name="tcDate" type="Date" size="8"  value="2020-06-09">
                           </strong></td>
                           <td width="32"><strong>
                             
@@ -149,7 +155,7 @@
                           </strong></td>
                           <td width="56"><strong>과 졸업</strong></td>
                           <td width="67"><strong>
-                            <input name="colDate" type="Date" size="8">
+                            <input name="colDate" type="Date" size="8"  value="2020-06-09">
                           </strong></td>
                           <td width="32"><strong>
                             
@@ -181,7 +187,7 @@
                         <tr align="left">
                           <td width="68" align="center"><strong>교육명</strong></td>
                           <td width="473"><strong>
-                            <input name="academyName" type="text" size="70">
+                            <input name="academyName1" type="text" size="70">
                                                     </strong><strong>                          </strong><strong>                          </strong></td>
                           </tr>
                         <tr align="left">
@@ -189,15 +195,15 @@
                             <tr>
                               <td width="72"><strong>시작일</strong></td>
                               <td width="102"><strong>
-                                <input name="startDate" type="Date" size="6">
+                                <input name="startDate1" type="Date" size="6"  value="2020-06-09">
                               </strong></td>
                               <td width="70"><strong>종료일</strong></td>
                               <td width="91"><strong>
-                                <input name="endDate" type="Date" size="6">
+                                <input name="endDate1" type="Date" size="6"  value="2020-06-09">
                               </strong></td>
                               <td width="60"><strong>교육기간</strong></td>
                               <td width="139"><strong>
-                                <input name="educationInstitution" type="text" size="8">
+                                <input name="educationInstitution1" type="text" size="8">
                               </strong></td>
                             </tr>
                           </table></td>
@@ -209,7 +215,7 @@
                         <tr align="left">
                           <td width="68" align="center"><strong>교육명</strong></td>
                           <td width="473"><strong>
-                            <input name="academyName" type="text" size="70">
+                            <input name="academyName2" type="text" size="70">
                                                     </strong><strong>                          </strong><strong>                          </strong></td>
                           </tr>
                         <tr align="left">
@@ -217,15 +223,15 @@
                             <tr>
                               <td width="72"><strong>시작일</strong></td>
                               <td width="102"><strong>
-                                <input name="startDate" type="Date" size="6">
+                                <input name="startDate2" type="Date" size="6"  value="2020-06-09">
                               </strong></td>
                               <td width="70"><strong>종료일</strong></td>
                               <td width="91"><strong>
-                                <input name="endDate" type="Date" size="6">
+                                <input name="endDate2" type="Date" size="6"  value="2020-06-09">
                               </strong></td>
                               <td width="60"><strong>교육기간</strong></td>
                               <td width="139"><strong>
-                                <input name="educationInstitution" type="text" size="8">
+                                <input name="educationInstitution2" type="text" size="8">
                               </strong></td>
                             </tr>
                           </table></td>
@@ -237,7 +243,7 @@
                         <tr align="left">
                           <td width="68" align="center"><strong>교육명</strong></td>
                           <td width="473"><strong>
-                            <input name="academyName" type="text" size="70">
+                            <input name="academyName3" type="text" size="70">
                                                     </strong><strong>                          </strong><strong>                          </strong></td>
                           </tr>
                         <tr align="left">
@@ -245,15 +251,15 @@
                             <tr>
                               <td width="72"><strong>시작일</strong></td>
                               <td width="102"><strong>
-                                <input name="startDate" type="Date" size="6">
+                                <input name="startDate3" type="Date" size="6"  value="2020-06-09">
                               </strong></td>
                               <td width="70"><strong>종료일</strong></td>
                               <td width="91"><strong>
-                                <input name="endDate" type="Date" size="6">
+                                <input name="endDate3" type="Date" size="6"  value="2020-06-09">
                               </strong></td>
                               <td width="60"><strong>교육기간</strong></td>
                               <td width="139"><strong>
-                                <input name="educationInstitution" type="text" size="8">
+                                <input name="educationInstitution3" type="text" size="8">
                               </strong></td>
                             </tr>
                           </table></td>
@@ -270,8 +276,12 @@
         <tr>
           <td height="3" align="center"><table width="107" border="0" cellpadding="1" cellspacing="1">
             <tr>
-              <td width="49"><img src="../../image/bt_remove.gif" width="49" height="18"></td>
-              <td width="51"><img src="../../image/bt_cancel.gif" width="49" height="18"></td>
+             <td width="49">
+			<input type="submit"  value="등록" src="../../image/bt_remove.gif"  width="49" height="18">
+              </td>
+              <td width="51">
+			<input type="reset" value="취소" src="../../image/bt_remove.gif"  width="49" height="18"  onClick="location.href='list.jsp'">
+              </td>
             </tr>
           </table></td>
         </tr>
@@ -283,6 +293,7 @@
 </table>
 	</div>
 </div>
+</form>
 </div>
 </body>
 </html>

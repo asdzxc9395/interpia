@@ -6,7 +6,7 @@
 <jsp:include page="../default/sidebar.jsp" />
  
   <!-- 회원 정보 입력 -->
-  <form action='add' method='post' enctype='multipart/form-data' >
+  <form action='../employee/add' method='post' enctype='multipart/form-data' >
 
 <div id="contents">
 		<div id="content">
@@ -25,19 +25,26 @@
           <td height="15" align="left"><table width="640" border="0" cellspacing="0" cellpadding="0">
               <tr> 
                 <td><table width="640" border="0" cellspacing="1" cellpadding="0">
-                    <tr> 
+                     <tr> 
                       <td height="2" background="../../image/bar_bg1.gif"></td>
                     </tr>
                     <tr align="center" bgcolor="F8F8F8"> 
                       <td height="26" align="center" bgcolor="#E4EBF1" style="padding-right:10"><table width="600" border="0" cellspacing="0" cellpadding="0">
-                          <tr> 
-                            <td align="center"><strong>교육정보 | <a href="../education/form">자격증. 보유기술정보</a> | 프로젝트 정보 |경력정보 | 근무정보</strong></td>
+                           <tr> 
+                            <td align="center"><strong>
+                            <a href="../employee/form?no=${employee.userNo}">기본정보</a>
+                             | <a href="../education/form?no=${employee.userNo}">교육정보</a>
+                             | <a href="../certificate/form?no=${employee.userNo}">자격증. 보유기술정보 </a>
+                             |<a href="../project/form?no=${employee.userNo}">프로젝트 정보 </a>
+                             | <a href="../career/form?no=${employee.userNo}">경력정보</a>
+                             | <a href="../working/form?no=${employee.userNo}">근무정보</a>
+                              </strong></td>
                           </tr>
-                        </table></td>
+                        </table></td> 
                     </tr>
                     <tr align="center" bgcolor="F8F8F8"> 
                       <td height="3" align="right" background="../../image/bar_bg1.gif"></td>
-                    </tr>
+                    </tr> 
                   </table></td>
               </tr>
             </table></td>
@@ -130,9 +137,9 @@
                           <tr> 
                             <td width="102" align="right"><strong>성별 :&nbsp; </strong></td>
                             <td width="391"> 
-                            	<input type="radio" name="sex" value="0">
+                            	<input type="radio" name="sex" value="남자">
                               남자 
-                              	<input type="radio" name="sex" value="1">
+                              	<input type="radio" name="sex" value="여자">
                               여자
                             </td>
                           </tr>
@@ -143,9 +150,9 @@
                           <tr> 
                             <td width="102" align="right"><strong>결혼유무 :&nbsp;</strong></td>
                             <td width="391"> 
-                            <input type="radio" name="martialStatus" value="0">
+                            <input type="radio" name="martialStatus" value="기혼">
                               기혼 
-                            <input type="radio" name="martialStatus" value="1">
+                            <input type="radio" name="martialStatus" value="미혼">
                               미혼
                            	</td>
                           </tr>
@@ -165,8 +172,8 @@
                           <tr> 
                             <td width="101" align="right"><strong>급여 지급유형 :&nbsp;</strong></td>
                             <td width="392"> <select name="paymentType">
-                                <option value="0" selected="selected">주급</option>
- 							   <option value="1">월급</option>
+                                <option value="주급" selected="selected">주급</option>
+ 							   <option value="월급">월급</option>
                               </select> </td>
                           </tr>
                         </table></td>
@@ -176,8 +183,8 @@
                           <tr> 
                             <td width="101" align="right"><strong>희망직무 :&nbsp;</strong></td>
                             <td width="392"> <select name="typeJob">
-                                <option value="0" selected="selected">SI</option>
- 							   <option value="1">SM</option>
+                                <option value="SI" selected="selected">SI</option>
+ 							   <option value="SM">SM</option>
                               </select> </td>
                           </tr>
                         </table></td>
@@ -187,8 +194,8 @@
                           <tr> 
                             <td width="101" align="right"><strong>입사유형:&nbsp;</strong></td>
                             <td width="392"> <select name="employmentType">
-                                <option value="0" selected="selected">정규직</option>
- 							   <option value="1">계약직</option>
+                                <option value="정규직" selected="selected">정규직</option>
+ 							   <option value="계약직">계약직</option>
                               </select> </td>
                           </tr>
                         </table></td>
@@ -251,11 +258,11 @@
         <tr>
           <td height="3" align="center"><table width="107" border="0" cellpadding="1" cellspacing="1">
             <tr>
-              <td width="49"><img src="../../image/bt_remove.gif" width="49" height="18">
-              <button>dd</button>
+             <td width="49">
+			<input type="submit"  value="등록" src="../../image/bt_remove.gif"  width="49" height="18">
               </td>
-              <td width="51"><img src="../../image/bt_cancel.gif" width="49" height="18">
-              
+              <td width="51">
+			<input type="reset" value="취소" src="../../image/bt_remove.gif"  width="49" height="18"  onClick="location.href='list.jsp'">
               </td>
             </tr>
           </table>            </td>

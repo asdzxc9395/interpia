@@ -27,14 +27,14 @@
                     </tr>
                     <tr align="center" bgcolor="F8F8F8"> 
                       <td height="26" align="center" bgcolor="#E4EBF1" style="padding-right:10"><table width="600" border="0" cellspacing="0" cellpadding="0">
-                          <tr> 
+                           <tr> 
                             <td align="center"><strong>
                             <a href="../employee/detail?no=${employee.userNo}">기본정보</a>
                              | <a href="../education/detail?no=${employee.userNo}">교육정보</a>
                              | <a href="../certificate/detail?no=${employee.userNo}">자격증. 보유기술정보 </a>
-                             |<a href="#">프로젝트 정보 </a>
+                             |<a href="../project/detail?no=${employee.userNo}">프로젝트 정보 </a>
                              | <a href="../career/detail?no=${employee.userNo}">경력정보</a>
-                             | <a href="#">근무정보</a>
+                             | <a href="../working/detail?no=${employee.userNo}">근무정보</a>
                               </strong></td>
                           </tr>
                         </table></td>
@@ -71,112 +71,39 @@
           <td height="7" align="center" valign="top"><table width="600" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td bgcolor="#CCCCCC"><table width="600" border="0" cellspacing="1" cellpadding="0">
+                  
+                  
+                  <c:forEach var="career" items="${career}"> 
                   <tr>
                     <td height="45" align="center" bgcolor="#E4EBF1"><strong>                      </strong>
                       <table width="547" border="0" cellpadding="1" cellspacing="1">
                         <tr align="left">
                           <td width="49"><strong>회사명</strong></td>
                           <td width="268"><strong>
-                            <input name="textfield332542" type="text" size="30">
+                            <input name="companyName" type="text" size="30" value="${career.companyName}">
                           </strong></td>
                           <td width="78"><strong>직위</strong></td>
                           <td width="152"><strong>
                           </strong><strong>
-                          <input name="textfield33254225" type="text" size="15">
+                          <input name="position" type="text" size="15" value="${career.position}">
 </strong></td>
                           </tr>
                         <tr align="left">
                           <td><strong>기간</strong></td>
                           <td width="268"><strong>
-                            <input name="textfield33254232" type="text" size="10">
+                            <input name="joinDate" type="Date" size="10" value="${career.joinDate}">
 ~ 
-<input name="textfield332542322" type="text" size="10">
+<input name="leaveDate" type="text" size="10" value="${career.leaveDate}">
 </strong></td>
                           <td width="78"><strong>담당업무</strong></td>
                           <td width="152"><strong>
-                            <input name="textfield332542252" type="text" size="20">
+                            <input name="chargePosition" type="text" size="20" value="${career.chargePosition}">
                           </strong></td>
                         </tr>
-                      </table>                      </td>
+                      </table></td>
                     </tr>
-                  <tr>
-                    <td height="45" align="center" bgcolor="#E4EBF1"><table width="547" border="0" cellpadding="1" cellspacing="1">
-                      <tr align="left">
-                        <td width="49"><strong>회사명</strong></td>
-                        <td width="268"><strong>
-                          <input name="textfield3325422" type="text" size="30">
-                        </strong></td>
-                        <td width="78"><strong>직위</strong></td>
-                        <td width="152"><strong> </strong><strong>
-                          <input name="textfield332542253" type="text" size="15">
-                        </strong></td>
-                      </tr>
-                      <tr align="left">
-                        <td><strong>기간</strong></td>
-                        <td width="268"><strong>
-                          <input name="textfield332542323" type="text" size="10">
-      ~
-      <input name="textfield3325423222" type="text" size="10">
-                        </strong></td>
-                        <td width="78"><strong>담당업무</strong></td>
-                        <td width="152"><strong>
-                          <input name="textfield3325422522" type="text" size="20">
-                        </strong></td>
-                      </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="45" align="center" bgcolor="#E4EBF1"><table width="547" border="0" cellpadding="1" cellspacing="1">
-                      <tr align="left">
-                        <td width="49"><strong>회사명</strong></td>
-                        <td width="268"><strong>
-                          <input name="textfield3325423" type="text" size="30">
-                        </strong></td>
-                        <td width="78"><strong>직위</strong></td>
-                        <td width="152"><strong> </strong><strong>
-                          <input name="textfield332542254" type="text" size="15">
-                        </strong></td>
-                      </tr>
-                      <tr align="left">
-                        <td><strong>기간</strong></td>
-                        <td width="268"><strong>
-                          <input name="textfield332542324" type="text" size="10">
-      ~
-      <input name="textfield3325423223" type="text" size="10">
-                        </strong></td>
-                        <td width="78"><strong>담당업무</strong></td>
-                        <td width="152"><strong>
-                          <input name="textfield3325422523" type="text" size="20">
-                        </strong></td>
-                      </tr>
-                    </table></td>
-                  </tr>
-                  <tr>
-                    <td height="45" align="center" bgcolor="#E4EBF1"><table width="547" border="0" cellpadding="1" cellspacing="1">
-                      <tr align="left">
-                        <td width="49"><strong>회사명</strong></td>
-                        <td width="268"><strong>
-                          <input name="textfield33254233" type="text" size="30">
-                        </strong></td>
-                        <td width="78"><strong>직위</strong></td>
-                        <td width="152"><strong> </strong><strong>
-                          <input name="textfield3325422542" type="text" size="15">
-                        </strong></td>
-                      </tr>
-                      <tr align="left">
-                        <td><strong>기간</strong></td>
-                        <td width="268"><strong>
-                          <input name="textfield3325423242" type="text" size="10">
-      ~
-      <input name="textfield33254232232" type="text" size="10">
-                        </strong></td>
-                        <td width="78"><strong>담당업무</strong></td>
-                        <td width="152"><strong>
-                          <input name="textfield33254225232" type="text" size="20">
-                        </strong></td>
-                      </tr>
-                    </table></td>
-                  </tr>
+				</c:forEach>
+				
               </table></td>
             </tr>
           </table></td>
@@ -187,8 +114,12 @@
         <tr>
           <td height="3" align="center"><table width="107" border="0" cellpadding="1" cellspacing="1">
             <tr>
-              <td width="49"><img src="../../image/bt_remove.gif" width="49" height="18"></td>
-              <td width="51"><img src="../../image/bt_cancel.gif" width="49" height="18"></td>
+             <td width="49">
+			<input type="submit"  value="수정" src="../../image/bt_remove.gif"  width="49" height="18">
+              </td>
+              <td width="51">
+			<input type="reset" value="취소" src="../../image/bt_remove.gif"  width="49" height="18"  onClick="location.href='../employee/list.jsp'">
+              </td>
             </tr>
           </table></td>
         </tr>

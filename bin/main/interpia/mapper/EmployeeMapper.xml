@@ -23,13 +23,6 @@
 		<result column="email" property="email" />
 		<result column="tech_grade" property="techGrade" />
 		<result column="alcohol" property="alcohol" />
-
-<!-- 		<collection property="academyFiles" ofType="Academy">
-			<id column="education_no" property="educationNo" />
-			<result column="education_name" property="educationName" />
-			<result column="major" property="major" />
-			<result column="graduation_date" property="graduationDate" />
-		</collection> -->
 	</resultMap>
 
 	<select id="findAll" resultMap="EmployeeMap">
@@ -58,6 +51,7 @@
 	<insert id="insert" parameterType="Employee">
 		insert into employee
 		(
+		user_no,
 		kor_name,
 		eng_name,
 		chi_name,
@@ -76,6 +70,7 @@
 		tech_grade,
 		alcohol)
 		values(
+		#{userNo},	
 		#{korName},
 		#{engName},
 		#{chiName},
@@ -93,6 +88,9 @@
 		#{email},
 		#{techGrade},
 		#{alcohol})
+		    <selectKey keyProperty="userNo" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
 	</insert>
 
 	<delete id="delete" parameterType="int">
@@ -139,6 +137,7 @@
 			<if test="searchType == 'n'.toString()"> and kor_name like concat('%', #{keyword}, '%') </if>
 			<if test="searchType == 's'.toString()"> and sex like concat('%', #{keyword}, '%') </if>
 			<if test="searchType == 't'.toString()"> and tech_grade like concat('%', #{keyword}, '%') </if>
+			<if test="searchType == 'a'.toString()"> and adress like concat('%', #{keyword}, '%') </if>
 		</if>
 	</sql>
 
@@ -157,7 +156,15 @@
 		<include refid="searchCondition"></include>
 	</select>
 
-
+  <select id="findByKeyword" resultMap="EmployeeMap" parameterType="map">
+    select *
+    from employee
+    <where>
+      <if test="sex != null">sex like concat('%', #{sex}, '%')</if>
+      <if test="adress != null">adress like concat('%', #{adress}, '%')</if>
+      <if test="year != null">and year &lt;= #{year}</if>
+    </where>
+  </select>
 
 
 </mapper>

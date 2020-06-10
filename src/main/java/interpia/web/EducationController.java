@@ -1,9 +1,8 @@
 package interpia.web;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import interpia.domain.Academy;
 import interpia.domain.Education;
 import interpia.domain.Employee;
-import interpia.service.AcademyService;
 import interpia.service.EducationService;
 import interpia.service.EmployeeService;
 
@@ -32,64 +30,42 @@ public class EducationController {
 	@Autowired
 	EducationService educationService;
 
-	@Autowired
-	AcademyService academyService;
 
 	@GetMapping("form")
-	  public String form() throws Exception {
+	public String form(Employee employee,
+			 Model model, int no) throws Exception {
+		model.addAttribute("employee", employeeService.get(no));
 		return "/WEB-INF/jsp/education/form.jsp";
-	  }
-
-	@PostMapping("add")
-	public String add(Model model,
-			int userNo,
-			String korName,
-			String residentNo) throws Exception {
-		// 회원정보 얻기
-		Employee employee = employeeService.get(userNo);
-
-		// 중복입력코드
-		List<Academy> academys = new ArrayList<>();
-
-		// 교육정보 얻기
-		Academy academy = new Academy();
-		academy.setEmployee(employee);//리스트로 입력한것도 되나 함 볼게요
-
-		Education education = new Education();
-		education.setEmployee(employee);
-
-		// 입력
-		educationService.add(education);
-		academyService.add(academy);
-		return "redirect:list?userNo=" + userNo;
 	}
-	
+
+	@RequestMapping(value ="/add", method = RequestMethod.POST)
+	public String add(Education education,
+			HttpServletRequest req) throws Exception {
+			
+		HttpSession session = req.getSession();
+		int userNo = (int) session.getAttribute("userNo");
+
+		education.setUserNo(userNo);
+		education.setEducationNo(userNo);
+		educationService.add(education);
+		return "redirect:../certificate/form?no="+ education.getUserNo();
+	}
+
 	@GetMapping("detail")
-	  public String detail(int no, Model model) throws Exception {
-		Employee employee = employeeService.get(no);
-		model.addAttribute("employee", employee);
-	    model.addAttribute("education", educationService.get(no));
-	    model.addAttribute("academy", academyService.get(no));
-	    return "/WEB-INF/jsp/education/detail.jsp";
-	  }
-	
+	public String detail(int no, Model model) throws Exception {
+		model.addAttribute("employee", employeeService.get(no));
+		model.addAttribute("education", educationService.get(no));
+		return "/WEB-INF/jsp/education/detail.jsp";
+	}
+
 	@PostMapping("update")
-	public String update(Model model, int userNo) throws Exception {
-		
-		// 회원정보 얻기
-		Employee employee = employeeService.get(userNo);
-		Education education = educationService.get(userNo);
-		Academy academy = academyService.get(userNo);
-		
-		education.setEmployee(employee);
-		academy.setEmployee(employee);
-		
-		// 입력
-		educationService.update(education);
-		academyService.update(academy);
-		return "redirect:../employee/list";
+	public String update(Education education, int userNo) throws Exception {
+		education.setUserNo(userNo);
+		if (educationService.update(education) > 0) {
+			System.out.println(education);
+			return "redirect:../employee/list";
+		} else {
+			throw new Exception("변경할 게시물 번호가 유효하지 않습니다.");
+		}
 	}
 }
-
-//Academy academy = academyService.get(userNo);
-//Education education = educationService.get(userNo);

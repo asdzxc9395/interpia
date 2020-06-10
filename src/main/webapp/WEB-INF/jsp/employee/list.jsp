@@ -16,27 +16,22 @@
 			<option value="n">이름</option> 
 			<option value="s">성별</option>
 			<option value="t">경력정보</option>
+			<option value="a">주소</option>
 		</select>
 	<input type="text" id="keyword" name="keyword" 
 		value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요"/>
 	<button id="searchBtn">Search</button>
   </div>
   
-  <!-- 사원검색 -->	 
-  <div>
-  	<label class="label">:::: 성 &nbsp;&nbsp; 별 ::::</label>
-  	 <input name="textfield" type="text" class="INPUT"> 
-  </div>	 
+  <!-- 사원검색 -->	
+  <form action='search' method='get'>  
   <div>
    <label class="label">:::: 연 &nbsp;&nbsp; 차 :::: </label>
-  	 <input name="textfield" type="text" class="INPUT" placeholder="뒤에7자리"> 
+  	 <input name="year" type="number" class="INPUT" placeholder="뒤에7자리"> 
   </div>	 
-  <div>
-  	<label class="label">:::: 주 &nbsp;&nbsp; 소 ::::</label>
-  	 <input name="textfield" type="text" class="INPUT" placeholder="ex)서울시"> 
-  </div>	
+  <button style="margin-left: 227px;">검색</button>
+  </form>
   </div>
-   
   <div id="naviBar">
   <!-- 선택삭제기능 -->
   	<a class="selectDelete_btn">삭제</a>
@@ -66,9 +61,33 @@
  		 } 
 	 });
 
-</script>
+	</script><img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">
+  	<a class="selectDetail_btn">수정</a> 
+  	<script type="text/javascript">
+  	 $(".selectDetail_btn").click(function(){
+  		  
+  		var checkArr = new Array();
+		var user_by_no = $("input[class='chBox']:checked").attr("data-userNum");
+		   $("input[class='chBox']:checked").each(function(){
+			    checkArr.push($(this).attr("data-userNum"));
+			   });
+		
+		console.log(user_by_no);
+		console.log(checkArr.length);
+		if(checkArr.length > 1) {
+			alert("한개만 체크하여 주세요");
+		} else {
+			function selectDetail() {
+				location.href = "/interpia/app/employee/detail?no="+user_by_no;
+				}
+		  		selectDetail(); 
+		}
+		
+		
+		
+  	 });
+  	</script>
   	<img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">
-  	<a href="#">수정</a> <img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">
     <a href="#">인사기록카드</a> <img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">
     <a href="#">경력정보</a> <img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle"> 
     <a href="#">근무정보</a><img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle"> 
@@ -227,9 +246,36 @@
                     
  			</div><!-------------------------  리스트 ------------------------------>
  			
+ 			
+ 			<script type="text/javascript">
+    function doExcelUploadProcess(){
+        var f = new FormData(document.getElementById('form1'));
+        $.ajax({
+            url: "uploadExcelFile",
+            data: f,
+            processData: false,
+            contentType: false,
+            type: "POST",
+            success: function(data){
+                console.log(data);
+                document.getElementById('result').innerHTML = JSON.stringify(data);
+            }
+        })
+    }
+    
+    function doExcelDownloadProcess(){
+        var f = document.form1;
+        f.action = "downloadExcelFile";
+        f.submit();
+    }
+</script>
  			<div id="downLoad">
- 				<button><img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">자료다운</button>
  			</div>
+           <form id="form1" name="form1" method="post" enctype="multipart/form-data">
+    		<button type="button" onclick="doExcelDownloadProcess()">
+    		<img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">자료다운 작업</button>
+			</form>
+           
            </div>   
     </div><!-- contents end -->          
 </div>

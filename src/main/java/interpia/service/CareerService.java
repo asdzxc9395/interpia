@@ -1,5 +1,7 @@
 package interpia.service;
 
+import java.util.List;
+
 import interpia.domain.Career;
 
 public interface CareerService {
@@ -8,8 +10,10 @@ public interface CareerService {
 	
 	int delete(int no) throws Exception;
 	
-	int update(Career career) throws Exception;
+	void update(List<Career> careers) throws Exception;
 	
 	Career get(int no) throws Exception;
+	
+	List<Career> list(int userNo) throws Exception;
 	
 }

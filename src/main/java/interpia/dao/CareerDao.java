@@ -1,5 +1,7 @@
 package interpia.dao;
 
+import java.util.List;
+
 import interpia.domain.Career;
 
 public interface CareerDao {
@@ -9,5 +11,7 @@ public interface CareerDao {
 	
 	public Career findByNo(int no) throws Exception;
 	
-	public int update(Career career) throws Exception;
+	public void update(Career career) throws Exception;
+	
+	public List<Career> findAll(int userNo) throws Exception;
 }

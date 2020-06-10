@@ -2,49 +2,87 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="interpia.dao.CertificateDao">
- 
- <resultMap type="Certificate" id="CertificateMap">
-    <id column="certificate_no"   property="certificateNo"/>
-    <result column="user_no"  property="userNo"/>
-    <result column="certificate_name"  property="certificateName"/>
-    <result column="acquistion_date"  property="acquistionDate"/>
-  
-  </resultMap>
- 
-   <insert id="insert" parameterType="Certificate">
-  insert into certificate
-  (user_no, 
-  certificate_name, acquistion_date)
-  values
-  <foreach collection="files" item="file" separator=",">
-      (#{userNo},
-       #{file.certificateName}, #{file.acquistionDate})
-       </foreach>
-  </insert>
-  
- <select id="findByNo" resultMap="CertificateMap" parameterType="int">
-	select
+
+<mapper namespace="interpia.dao.CertificateDao">
+
+	<resultMap type="Certificate" id="CertificateMap">
+		<id column="certificate_no" property="certificateNo" />
+		<result column="user_no" property="userNo" />
+		<result column="certificate_name1" property="certificateName1" />
+		<result column="acquistion_date1" property="acquistionDate1" />
+		<result column="certificate_name2" property="certificateName2" />
+		<result column="acquistion_date2" property="acquistionDate2" />
+		<result column="certificate_name3" property="certificateName3" />
+		<result column="acquistion_date3" property="acquistionDate3" />
+		<result column="certificate_name4" property="certificateName4" />
+		<result column="acquistion_date4" property="acquistionDate4" />
+		<result column="tech_name1" property="techName1" />
+		<result column="proficiency1" property="proficiency1" />
+		<result column="tech_name2" property="techName2" />
+		<result column="proficiency2" property="proficiency2" />
+		<result column="tech_name3" property="techName3" />
+		<result column="proficiency3" property="proficiency3" />
+		<result column="tech_name4" property="techName4" />
+		<result column="proficiency4" property="proficiency4" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Certificate">
+		insert into certificate
+		(user_no,
+		certificate_name1, acquistion_date1, certificate_name2, acquistion_date2,
+		certificate_name3, acquistion_date3, certificate_name4, acquistion_date4,
+		tech_name1, proficiency1, tech_name2, proficiency2,
+		tech_name3, proficiency3, tech_name4, proficiency4
+		)
+		values
+			(#{userNo},
+			#{certificateName1}, #{acquistionDate1}, #{certificateName2}, #{acquistionDate2}, 
+			#{certificateName3}, #{acquistionDate3}, #{certificateName4}, #{acquistionDate4}, 
+			#{techName1}, #{proficiency1}, #{techName2}, #{proficiency2}, 
+			#{techName3}, #{proficiency3}, #{techName4}, #{proficiency4} 
+			)
+		       	<selectKey keyProperty="certificateNo" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
+	</insert>
+
+	<select id="findByNo" resultMap="CertificateMap"
+		parameterType="int">
+		select
 		*
-	from 
-		certificate c, employee e
-	where
-		e.user_no = #{userNo}
- </select>
- 
-   <delete id="delete" parameterType="int">
-    delete from certificate
-    where user_no=#{userNo}
-  </delete>
- 
- 	<update id="update" parameterType="Certificate">
+		from
+		certificate
+		where
+		user_no = #{userNo}
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from certificate
+		where
+		user_no=#{userNo}
+	</delete>
+
+	<update id="update" parameterType="Certificate">
 		update certificate
 		<set>
-			<if test="certificateName != null and certificateName != ''">certificate_name=#{certificateName},</if>
-			<if test="acquistionDate != null">acquistion_date=#{acquistionDate},</if>
+			<if test="certificateName1 != null and certificateName1 != ''">certificate_name1=#{certificateName1},</if>
+			<if test="acquistionDate1 != null">acquistion_date1=#{acquistionDate1},</if>
+			<if test="certificateName2 != null and certificateName2 != ''">certificate_name2=#{certificateName2},</if>
+			<if test="acquistionDate2 != null">acquistion_date2=#{acquistionDate2},</if>
+			<if test="certificateName3 != null and certificateName3 != ''">certificate_name3=#{certificateName3},</if>
+			<if test="acquistionDate3 != null">acquistion_date3=#{acquistionDate3},</if>
+			<if test="certificateName4 != null and certificateName4 != ''">certificate_name4=#{certificateName4},</if>
+			<if test="acquistionDate4 != null">acquistion_date4=#{acquistionDate4},</if>
+			<if test="techName1 != null and techName1 != ''">tech_name1=#{techName1},</if>
+			<if test="proficiency1 != null and proficiency1 != ''">proficiency1=#{proficiency1},</if>
+			<if test="techName2 != null and techName2 != ''">tech_name2=#{techName2},</if>
+			<if test="proficiency2 != null and proficiency2 != ''">proficiency2=#{proficiency2},</if>
+			<if test="techName3 != null and techName3 != ''">tech_name3=#{techName3},</if>
+			<if test="proficiency3 != null and proficiency3 != ''">proficiency3=#{proficiency3},</if>
+			<if test="techName4 != null and techName4 != ''">tech_name4=#{techName4},</if>
+			<if test="proficiency4 != null and proficiency4 != ''">proficiency4=#{proficiency4}</if>
 		</set>
 		where
 		user_no = #{userNo}
 	</update>
- </mapper>
+</mapper>

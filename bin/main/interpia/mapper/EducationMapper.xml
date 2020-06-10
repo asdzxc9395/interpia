@@ -5,91 +5,110 @@
 
 <mapper namespace="interpia.dao.EducationDao">
 
-  <resultMap type="Education" id="EducationMap">
-    <id column="education_no"   property="eudcationNo"/>
-    <result column="user_no"  property="userNo"/>
-    <result column="hs_name"  property="hsName"/>
-    <result column="hs_major"  property="hsMajor"/>
-    <result column="hs_date"    property="hsDate"/>
-    <result column="cp_name"  property="cpName"/>
-    <result column="cp_major"  property="cpMajor"/>
-    <result column="cp_date"    property="cpDate"/>
-    <result column="tc_name"  property="tcName"/>
-    <result column="tc_major"  property="tcMajor"/>
-    <result column="tc_date"    property="tcDate"/>
-    <result column="col_name"  property="colName"/>
-    <result column="col_major"  property="colMajor"/>
-    <result column="col_date"    property="colDate"/>
-    <result column="gs_name"  property="gsName"/>
-    <result column="gs_major"  property="gsMajor"/>
-    <result column="gs_date"    property="gsDate"/>
-  </resultMap>
-  
-    <insert id="insert" parameterType="Education">
-    insert into 
-    	education(
-    	user_no,
-    	hs_name, 
-    	hs_major,
-    	hs_date,
-    	cp_name,
-    	cp_major,
-    	cp_date,
-    	tc_name,
-    	tc_major,
-    	tc_date,
-    	col_name,
-    	col_major,
-    	col_date,
-    	) 
-    values(
-    #{userNo},
-    #{hsName},
-    #{hsMajor},
-    #{hsDate},
-    #{cpName},
-    #{cpMajor},
-    #{cpDate},
-    #{tcName},
-    #{tcMajor},
-    #{tcDate},
-    #{colName},
-    #{colMajor},
-    #{colDate},
-    )
-  </insert>
-  
-  
-    <select id="findByNo" resultMap="EducationMap">
-    select * 
-    from education
-	where
-	user_no = #{userNo};
-  </select>
-  
-  <delete id="delete" parameterType="int">
-    delete from education
-    where user_no=#{userNo}
-  </delete>
+	<resultMap type="Education" id="EducationMap">
+		<id column="education_no" property="educationNo" />
+		<result column="user_no" property="userNo" />
+		<result column="hs_name" property="hsName" />
+		<result column="hs_major" property="hsMajor" />
+		<result column="hs_date" property="hsDate" />
+		<result column="cp_name" property="cpName" />
+		<result column="cp_major" property="cpMajor" />
+		<result column="cp_date" property="cpDate" />
+		<result column="tc_name" property="tcName" />
+		<result column="tc_major" property="tcMajor" />
+		<result column="tc_date" property="tcDate" />
+		<result column="col_name" property="colName" />
+		<result column="col_major" property="colMajor" />
+		<result column="col_date" property="colDate" />
+		<result column="academy_name1" property="academyName1" />
+		<result column="start_date1" property="startDate1" />
+		<result column="end_date1" property="endDate1" />
+		<result column="education_institution1"
+			property="educationInstitution1" />
+		<result column="academy_name2" property="academyName2" />
+		<result column="start_date2" property="startDate2" />
+		<result column="end_date2" property="endDate2" />
+		<result column="education_institution2"
+			property="educationInstitution2" />
+		<result column="academy_name3" property="academyName3" />
+		<result column="start_date3" property="startDate3" />
+		<result column="end_date3" property="endDate3" />
+		<result column="education_institution3"
+			property="educationInstitution3" />
+	</resultMap>
+
+	<insert id="insert" parameterType="Education">
+		insert into
+		education(
+		user_no,
+		hs_name, hs_major, hs_date,
+		cp_name, cp_major, cp_date,
+		tc_name, tc_major, tc_date,
+		col_name, col_major, col_date,
+		academy_name1, education_institution1, start_date1, end_date1,
+		academy_name2, education_institution2, start_date2, end_date2,
+		academy_name3, education_institution3, start_date3, end_date3
+		)
+		values(
+		#{userNo},
+		#{hsName}, #{hsMajor}, #{hsDate},
+		#{cpName}, #{cpMajor}, #{cpDate},
+		#{tcName}, #{tcMajor}, #{tcDate},
+		#{colName}, #{colMajor}, #{colDate},
+       #{academyName1}, #{educationInstitution1}, #{startDate1}, #{endDate1},
+       #{academyName2}, #{educationInstitution2}, #{startDate2}, #{endDate2},
+       #{academyName3}, #{educationInstitution3}, #{startDate3}, #{endDate3})
+       	<selectKey keyProperty="educationNo" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
+	</insert>
+
+
+	<select id="findByNo" resultMap="EducationMap"
+	parameterType="int">
+		select *
+		from education e, employee a
+		where
+		e.user_no = a.user_no 
+		and e.user_no = #{userNo};
+	</select>
+
+	<delete id="delete" parameterType="int">
+		delete from education
+		where user_no=#{userNo}
+	</delete>
 
 	<update id="update" parameterType="Education">
 		update education
-	<set>
+		<set>
 			<if test="hsName != null and hsName != ''">hs_name=#{hsName},</if>
 			<if test="hsMajor != null and hsMajor != ''">hs_major=#{hsMajor},</if>
 			<if test="hsDate != null">hs_date=#{hsDate},</if>
-			<if test="tcName != null and hsName != ''">tc_name=#{tcName},</if>
-			<if test="tcMajor != null and hsMajor != ''">tc_major=#{tcMajor},</if>
-			<if test="tcDate != null">tc_date=#{tcDate},</if>
 			<if test="cpName != null and cpName != ''">cp_name=#{cpName},</if>
 			<if test="cpMajor != null and cpMajor != ''">cp_major=#{cpMajor},</if>
 			<if test="cpDate != null">cp_date=#{cpDate},</if>
+			<if test="tcName != null and tcName != ''">tc_name=#{tcName},</if>
+			<if test="tcMajor != null and tcMajor != ''">tc_major=#{tcMajor},</if>
+			<if test="tcDate != null">tc_date=#{tcDate},</if>
 			<if test="colName != null and colName != ''">col_name=#{colName},</if>
 			<if test="colMajor != null and colMajor != ''">col_major=#{colMajor},</if>
-			<if test="colDate != null">col_date=#{colDate}</if>
-	</set>
-		where user_no = #{userNo}
+			<if test="colDate != null">col_date=#{colDate},</if>
+			<if test="academyName1 != null and academyName1 != ''">academy_name1=#{academyName1},</if>
+			<if test="startDate1 != null">start_date1=#{startDate1},</if>
+			<if test="endDate1 != null">end_date1=#{endDate1},</if>
+			<if test="educationInstitution1 != null and educationInstitution1 != ''">education_institution1=#{educationInstitution1},</if>
+			<if test="academyName2 != null and academyName2 != ''">academy_name2=#{academyName2},</if>
+			<if test="startDate2 != null">start_date2=#{startDate2},</if>
+			<if test="endDate2 != null">end_date2=#{endDate2},</if>
+			<if test="educationInstitution2 != null and educationInstitution2 != ''">education_institution2=#{educationInstitution2},</if>
+			<if test="academyName3 != null and academyName3 != ''">academy_name3=#{academyName3},</if>
+			<if test="startDate3 != null">start_date3=#{startDate3},</if>
+			<if test="endDate3 != null">end_date3=#{endDate3},</if>
+			<if test="educationInstitution3 != null and educationInstitution3 != ''">education_institution3=#{educationInstitution3}</if>
+		</set>
+		where
+		user_no = #{userNo}
 	</update>
-	
-	
-  </mapper>
+
+
+</mapper>
