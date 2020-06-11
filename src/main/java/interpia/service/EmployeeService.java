@@ -27,8 +27,6 @@ public interface EmployeeService {
 	List<Employee> listPage(Criteria cri) throws Exception;
 	
 	public int getTotalCount(Criteria cri) throws Exception;
-
-	public List<Employee> excelList() throws Exception;
 	
 	//리스트를 간단한 엑셀 워크북 객체로 생성
 	public SXSSFWorkbook makeSimpleFruitExcelWorkbook(List<Employee> list) throws Exception;

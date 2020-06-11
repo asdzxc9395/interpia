@@ -88,6 +88,7 @@ dependencies {
   // Thumnailator
   implementation 'net.coobird:thumbnailator:0.4.11'
   
+  implementation 'com.fasterxml.jackson.core:jackson-core:2.11.0'
   // json처리
   compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.0'
 

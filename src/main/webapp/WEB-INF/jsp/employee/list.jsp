@@ -248,31 +248,71 @@
  			
  			
  			<script type="text/javascript">
-    function doExcelUploadProcess(){
-        var f = new FormData(document.getElementById('form1'));
-        $.ajax({
-            url: "uploadExcelFile",
-            data: f,
-            processData: false,
-            contentType: false,
-            type: "POST",
-            success: function(data){
-                console.log(data);
-                document.getElementById('result').innerHTML = JSON.stringify(data);
-            }
-        })
-    }
-    
+ 		    
     function doExcelDownloadProcess(){
-        var f = document.form1;
-        f.action = "downloadExcelFile";
-        f.submit();
+/*   			let data = {};
+  			data.checkArr =  [];
+  				$("input[class='chBox']:checked").each(function(){
+  					data.checkArr.push($(this).attr("data-userNum"));});
+  				
+		   console.log(data.checkArr);
+		   console.log(data);
+		   
+		   let convertedData = JSON.stringify(data);
+		   console.log(convertedData);
+		   var xhr = new XMLHttpRequest();
+		   
+		   xhr.onreadystatechange = () => {
+			      if (xhr.readyState == 4) {
+			          if (xhr.status == 200) {
+		           let obj = JSON.parse(xhr.responseText);
+		}}}
+   			xhr.open('POST', 'downloadExcelFile');
+  			xhr.setRequestHeader('Content-Type', 'application/json'); 
+  			xhr.send(convertedData);   */ 
+  			
+  		/* 방법2 */ 
+  		
+  		var f = document.getElementById('form1');
+  			var checkArr = new Array();
+  			$("input[class='chBox']:checked").each(function(){
+			    checkArr.push($(this).attr("data-userNum"));});
+  			checkArr.sort();
+  			
+  			for(int i = 0; i < checkArr.length; i++) {
+  				data.append('num', checkArr[i]);
+  				console.log(checkArr[i]);
+  			}
+  			
+  			
+  			
+  		   $.ajax({
+  			    url : "downloadExcelFile",
+  			    type : "post",
+  			    data : {chBox : chArr },
+  			    success : function(){
+  			    	
+  			    	 }
+  			    	});
+  			
+/*  방법3 			$(function() {
+  				var checkArr = new Array();
+  	  			$("input[class='chBox']:checked").each(function(){
+  				    checkArr.push($(this).attr("data-userNum"));});
+  	  			checkArr.sort();
+  				$('#btn_send').click(function() {
+  					$.form({
+  						action: 'downloadExcelFile',
+  						data: { chBox: checkArr },
+  					}).submit();
+  				});
+  			}); */
     }
 </script>
  			<div id="downLoad">
  			</div>
            <form id="form1" name="form1" method="post" enctype="multipart/form-data">
-    		<button type="button" onclick="doExcelDownloadProcess()">
+    		<button type="button" id="btn_send" onclick="doExcelDownloadProcess()">
     		<img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">자료다운 작업</button>
 			</form>
            

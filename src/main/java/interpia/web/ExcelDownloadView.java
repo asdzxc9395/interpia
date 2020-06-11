@@ -19,10 +19,9 @@ public class ExcelDownloadView  extends AbstractView{
 	@Override
     protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        
         Locale locale = (Locale) model.get("locale");
+        System.out.println(locale);
         String workbookName = (String) model.get("workbookName");
-        
         // 겹치는 파일 이름 중복을 피하기 위해 시간을 이용해서 파일 이름에 추
         Date date = new Date();
         SimpleDateFormat dayformat = new SimpleDateFormat("yyyyMMdd", locale);

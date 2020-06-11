@@ -1,9 +1,11 @@
 package interpia.web;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -43,11 +46,11 @@ public class EmployeeController {
 		return "/WEB-INF/jsp/employee/form.jsp";
 	}
 
-	@GetMapping("delete")
-	public String delete(int no, Model model) throws Exception{
-		employeeService.delete(no);
-			return "/WEB-INF/jsp/employee/list.jsp";
-	}
+	//	@GetMapping("delete")
+	//	public String delete(int no, Model model) throws Exception{
+	//		employeeService.delete(no);
+	//			return "/WEB-INF/jsp/employee/list.jsp";
+	//	}
 	@ResponseBody
 	@RequestMapping(value = "/checkDelete", method = RequestMethod.POST)
 	public int checkDelete(@RequestParam(value = "chBox[]") List<String> chArr,
@@ -62,17 +65,17 @@ public class EmployeeController {
 		}   
 		return result;
 	}
-	
+
 	@GetMapping("list")
 	public String list(Criteria cri, Model model) throws Exception{
-				List<Employee> employee = employeeService.listPage(cri);
-				model.addAttribute("list",employee);
-				PageMaker pageMaker = new PageMaker(cri);
-				int totalCount = employeeService.getTotalCount(cri);
-				pageMaker.setTotalCount(totalCount);
-				model.addAttribute("pageMaker", pageMaker);
-				
-				return "/WEB-INF/jsp/employee/list.jsp";
+		List<Employee> employee = employeeService.listPage(cri);
+		model.addAttribute("list",employee);
+		PageMaker pageMaker = new PageMaker(cri);
+		int totalCount = employeeService.getTotalCount(cri);
+		pageMaker.setTotalCount(totalCount);
+		model.addAttribute("pageMaker", pageMaker);
+
+		return "/WEB-INF/jsp/employee/list.jsp";
 	}
 
 
@@ -85,14 +88,14 @@ public class EmployeeController {
 			imageFile.transferTo(new File(dirPath + "/" + filename));
 			employee.setImage(filename);
 		}
-		
+
 		employeeService.add(employee);
 		System.out.println(employee);
-		
+
 		HttpSession session = req.getSession();
 		session.setAttribute("userNo", employee.getUserNo());
 		System.out.println(employee.getUserNo());
-		
+
 		return "redirect:../education/form?no=" + employee.getUserNo();
 	}
 
@@ -119,33 +122,66 @@ public class EmployeeController {
 		}
 	}
 
-	
-	 @GetMapping("search")
-	  public String search(Employee employee, Model model) throws Exception {
-	    HashMap<String, Object> map = new HashMap<>();
 
-	    if (employee.getYear() > 0) {
-	    	map.put("year", employee.getYear());
-	    }
+	@GetMapping("search")
+	public String search(Employee employee, Model model) throws Exception {
+		HashMap<String, Object> map = new HashMap<>();
 
-	    model.addAttribute("list", employeeService.search(map));
-	    return "/WEB-INF/jsp/employee/search.jsp";
-	  }
-	 
-	 
-	 @RequestMapping(value = "/downloadExcelFile", method = RequestMethod.POST)
-	    public String downloadExcelFile(Employee employee, Model model) throws Exception {
-		 
-		 List<Employee> list = employeeService.list();
-		 SXSSFWorkbook workbook = employeeService.excelFileDownloadProcess(list);
+		if (employee.getYear() > 0) {
+			map.put("year", employee.getYear());
+		}
 
-		 
-		 model.addAttribute("locale", Locale.KOREA);
-		 model.addAttribute("workbook", workbook);
-	     model.addAttribute("workbookName", "기본정보");
-		 
-		 return "excelDownloadView";
-	 }
+		model.addAttribute("list", employeeService.search(map));
+		return "/WEB-INF/jsp/employee/search.jsp";
+	}
+
+	@RequestMapping(value = "/downloadExcelFile", method = RequestMethod.POST)
+	@ResponseBody
+	public String downloadExcelFile(Employee employee, Model model, @RequestParam(value = "chBox[]") List<String> chArr) throws Exception {
+		List<Employee> list = new ArrayList<Employee>();
+		int userNum = 0;
+		for(String i : chArr) {  
+			userNum = Integer.parseInt(i);
+			 employee = employeeService.get(userNum);
+			 list.add(employee);
+		}  
+
+		SXSSFWorkbook workbook = employeeService.excelFileDownloadProcess(list);
+		model.addAttribute("locale", Locale.KOREA);
+		model.addAttribute("workbook", workbook);
+		model.addAttribute("workbookName", "기본정보");
+		System.out.println("마지막관문");
+		return "excelDownloadView";
+	}
+
+	//	 @SuppressWarnings("unchecked")
+	//	@RequestMapping(value = "/downloadExcelFile", method = RequestMethod.POST)
+	//	 @ResponseBody
+	//	    public String downloadExcelFile(Employee employee, Model model, @RequestBody Map<String, Object> convertedData) throws Exception {
+	//		 
+	//		 List<Employee> list = employeeService.list();
+	//		 for(int i = 0; i < list.size(); i++) {
+	//			 list.remove(i);
+	//		 }
+	//		 System.out.println(list);
+	//		 
+	//		 List<String> checkedList = (List<String>)convertedData.get("checkArr");
+	//		 System.out.println(checkedList);
+	//		 for(String tmp : checkedList) {
+	//			  System.out.println(tmp);
+	//			  employee = employeeService.get(Integer.parseInt(tmp));
+	//			  list.add(employee);
+	//			  System.out.println(employee);
+	//			}
+	//		 
+	//		 SXSSFWorkbook workbook = employeeService.excelFileDownloadProcess(list);
+	//		 
+	//		 model.addAttribute("locale", Locale.KOREA);
+	//		 model.addAttribute("workbook", workbook);
+	//	     model.addAttribute("workbookName", "기본정보");
+	//		 
+	//		 return "excelDownloadView";
+	//	 }
 }
 
 

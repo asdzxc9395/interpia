@@ -11,6 +11,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.BeanNameViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import interpia.web.ExcelDownloadView;
+
 // Spring IoC 컨테이너가 탐색할 패키지 설정
 // => 지정한 패키지 및 그 하위 패키지를 모두 뒤져서
 // @Component 애노테이션이 붙은 클래스를 찾아 객체를 생성한다.
@@ -41,8 +43,8 @@ public class AppConfig implements WebMvcConfigurer {
   @Bean
   public InternalResourceViewResolver internalResourceViewResolver() {
 	  InternalResourceViewResolver rv = new InternalResourceViewResolver();
-	  rv.setPrefix("/WEB-INF/");
-	  rv.setSuffix(".jsp");
+//	  rv.setPrefix("/WEB-INF/");
+//	  rv.setSuffix(".jsp");
 	  rv.setOrder(1);
 	  return rv;
   }
@@ -53,6 +55,11 @@ public class AppConfig implements WebMvcConfigurer {
 	  return vr;
   }
   
+  @Bean
+  public ExcelDownloadView excelDownloadView() {
+	  ExcelDownloadView ex = new ExcelDownloadView();
+	  return ex;
+  }
   
 //  <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 //  <beans:property name="prefix" value="/WEB-INF/views/" />
