@@ -20,7 +20,6 @@ public class ExcelDownloadView  extends AbstractView{
     protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
         Locale locale = (Locale) model.get("locale");
-        System.out.println(locale);
         String workbookName = (String) model.get("workbookName");
         // 겹치는 파일 이름 중복을 피하기 위해 시간을 이용해서 파일 이름에 추
         Date date = new Date();
@@ -29,7 +28,6 @@ public class ExcelDownloadView  extends AbstractView{
         String day = dayformat.format(date);
         String hour = hourformat.format(date);
         String fileName = workbookName + "_" + day + "_" + hour + ".xlsx";         
-        
         // 여기서부터는 각 브라우저에 따른 파일이름 인코딩작업
         String browser = request.getHeader("User-Agent");
         if (browser.indexOf("MSIE") > -1) {
@@ -63,13 +61,14 @@ public class ExcelDownloadView  extends AbstractView{
         
        OutputStream os = null;
        SXSSFWorkbook workbook = null;
-       
+       System.out.println(fileName);
        try {
            workbook = (SXSSFWorkbook) model.get("workbook");
            os = response.getOutputStream();
            
            // 파일생성
            workbook.write(os);
+           System.out.println("마지막"+ workbook);
        }catch (Exception e) {
            e.printStackTrace();
        } finally {

@@ -17,20 +17,12 @@
 			<option value="s">성별</option>
 			<option value="t">경력정보</option>
 			<option value="a">주소</option>
+			<option value="y">연차</option>
 		</select>
 	<input type="text" id="keyword" name="keyword" 
 		value="${pageMaker.cri.keyword}" placeholder="검색어를 입력하세요"/>
 	<button id="searchBtn">Search</button>
   </div>
-  
-  <!-- 사원검색 -->	
-  <form action='search' method='get'>  
-  <div>
-   <label class="label">:::: 연 &nbsp;&nbsp; 차 :::: </label>
-  	 <input name="year" type="number" class="INPUT" placeholder="뒤에7자리"> 
-  </div>	 
-  <button style="margin-left: 227px;">검색</button>
-  </form>
   </div>
   <div id="naviBar">
   <!-- 선택삭제기능 -->
@@ -246,74 +238,34 @@
                     
  			</div><!-------------------------  리스트 ------------------------------>
  			
- 			
- 			<script type="text/javascript">
- 		    
+<script type="text/javascript">
+function moveData(){
+	       var checkArr = new Array();
+	$("input[class='chBox']:checked").each(function(){
+    checkArr.push($(this).attr("data-userNum"));});
+	checkArr.sort(); 
+	console.log(checkArr);
+	$.ajax({
+		    url : "moveData",
+		    type : "post",
+		    data : {chBox : checkArr},
+		    success : function(data){
+		    	location.href = "/interpia/app/employee/list"
+		    	 }
+		    	});
+}
     function doExcelDownloadProcess(){
-/*   			let data = {};
-  			data.checkArr =  [];
-  				$("input[class='chBox']:checked").each(function(){
-  					data.checkArr.push($(this).attr("data-userNum"));});
-  				
-		   console.log(data.checkArr);
-		   console.log(data);
-		   
-		   let convertedData = JSON.stringify(data);
-		   console.log(convertedData);
-		   var xhr = new XMLHttpRequest();
-		   
-		   xhr.onreadystatechange = () => {
-			      if (xhr.readyState == 4) {
-			          if (xhr.status == 200) {
-		           let obj = JSON.parse(xhr.responseText);
-		}}}
-   			xhr.open('POST', 'downloadExcelFile');
-  			xhr.setRequestHeader('Content-Type', 'application/json'); 
-  			xhr.send(convertedData);   */ 
-  			
-  		/* 방법2 */ 
-  		
-  		var f = document.getElementById('form1');
-  			var checkArr = new Array();
-  			$("input[class='chBox']:checked").each(function(){
-			    checkArr.push($(this).attr("data-userNum"));});
-  			checkArr.sort();
-  			
-  			for(int i = 0; i < checkArr.length; i++) {
-  				data.append('num', checkArr[i]);
-  				console.log(checkArr[i]);
-  			}
-  			
-  			
-  			
-  		   $.ajax({
-  			    url : "downloadExcelFile",
-  			    type : "post",
-  			    data : {chBox : chArr },
-  			    success : function(){
-  			    	
-  			    	 }
-  			    	});
-  			
-/*  방법3 			$(function() {
-  				var checkArr = new Array();
-  	  			$("input[class='chBox']:checked").each(function(){
-  				    checkArr.push($(this).attr("data-userNum"));});
-  	  			checkArr.sort();
-  				$('#btn_send').click(function() {
-  					$.form({
-  						action: 'downloadExcelFile',
-  						data: { chBox: checkArr },
-  					}).submit();
-  				});
-  			}); */
+        var f = document.form1;
+        f.action = "downloadExcelFile";
+        f.submit();
     }
 </script>
  			<div id="downLoad">
  			</div>
            <form id="form1" name="form1" method="post" enctype="multipart/form-data">
-    		<button type="button" id="btn_send" onclick="doExcelDownloadProcess()">
-    		<img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">자료다운 작업</button>
+    		<button type="button" onclick="doExcelDownloadProcess()">
+    		<img src="../../image/all_icon.gif" width="11" height="11" align="absmiddle">엑셀다운</button>
+    		<button type="button" onclick="moveData()">엑셀정보저장</button>
 			</form>
            
            </div>   

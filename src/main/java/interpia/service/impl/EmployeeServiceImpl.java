@@ -162,7 +162,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Override
 	public SXSSFWorkbook excelFileDownloadProcess(List<Employee> list) throws Exception {
-			System.out.println("serviceimpl"+list);
 		return this.makeSimpleFruitExcelWorkbook(list);
 		
 	}

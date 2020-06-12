@@ -123,65 +123,39 @@ public class EmployeeController {
 	}
 
 
-	@GetMapping("search")
-	public String search(Employee employee, Model model) throws Exception {
-		HashMap<String, Object> map = new HashMap<>();
 
-		if (employee.getYear() > 0) {
-			map.put("year", employee.getYear());
-		}
-
-		model.addAttribute("list", employeeService.search(map));
-		return "/WEB-INF/jsp/employee/search.jsp";
-	}
-
-	@RequestMapping(value = "/downloadExcelFile", method = RequestMethod.POST)
-	@ResponseBody
-	public String downloadExcelFile(Employee employee, Model model, @RequestParam(value = "chBox[]") List<String> chArr) throws Exception {
-		List<Employee> list = new ArrayList<Employee>();
-		int userNum = 0;
-		for(String i : chArr) {  
-			userNum = Integer.parseInt(i);
-			 employee = employeeService.get(userNum);
-			 list.add(employee);
-		}  
-
+	@RequestMapping(value = "/downloadExcelFile", method =  RequestMethod.POST)
+	public String downloadExcelFile(Employee employee, Model model, HttpServletRequest req) throws Exception {
+		HttpSession session = req.getSession();
+		List<Employee> list = (List<Employee>) session.getAttribute("userNo");
+		System.out.println(list);
+		
 		SXSSFWorkbook workbook = employeeService.excelFileDownloadProcess(list);
 		model.addAttribute("locale", Locale.KOREA);
 		model.addAttribute("workbook", workbook);
 		model.addAttribute("workbookName", "기본정보");
-		System.out.println("마지막관문");
 		return "excelDownloadView";
 	}
+	@RequestMapping(value = "/moveData", method =  RequestMethod.POST)
+	@ResponseBody
+	public String moveData(Employee employee, Model model, 
+			@RequestParam(value = "chBox[]") List<String> chArr	
+			, HttpServletRequest req) throws Exception {
+		List<Employee> list = new ArrayList<Employee>();
+		int userNum = 0;
+		for(String i : chArr) {  
+			userNum = Integer.parseInt(i);
+			employee = employeeService.get(userNum);
+			list.add(employee);
+		}  
+		System.out.println(list);
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("userNo", list);
+		System.out.println(list);
+		return "1";
+	}
 
-	//	 @SuppressWarnings("unchecked")
-	//	@RequestMapping(value = "/downloadExcelFile", method = RequestMethod.POST)
-	//	 @ResponseBody
-	//	    public String downloadExcelFile(Employee employee, Model model, @RequestBody Map<String, Object> convertedData) throws Exception {
-	//		 
-	//		 List<Employee> list = employeeService.list();
-	//		 for(int i = 0; i < list.size(); i++) {
-	//			 list.remove(i);
-	//		 }
-	//		 System.out.println(list);
-	//		 
-	//		 List<String> checkedList = (List<String>)convertedData.get("checkArr");
-	//		 System.out.println(checkedList);
-	//		 for(String tmp : checkedList) {
-	//			  System.out.println(tmp);
-	//			  employee = employeeService.get(Integer.parseInt(tmp));
-	//			  list.add(employee);
-	//			  System.out.println(employee);
-	//			}
-	//		 
-	//		 SXSSFWorkbook workbook = employeeService.excelFileDownloadProcess(list);
-	//		 
-	//		 model.addAttribute("locale", Locale.KOREA);
-	//		 model.addAttribute("workbook", workbook);
-	//	     model.addAttribute("workbookName", "기본정보");
-	//		 
-	//		 return "excelDownloadView";
-	//	 }
 }
 
 

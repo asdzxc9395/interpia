@@ -138,6 +138,7 @@
 			<if test="searchType == 's'.toString()"> and sex like concat('%', #{keyword}, '%') </if>
 			<if test="searchType == 't'.toString()"> and tech_grade like concat('%', #{keyword}, '%') </if>
 			<if test="searchType == 'a'.toString()"> and adress like concat('%', #{keyword}, '%') </if>
+			<if test="searchType == 'y'.toString()"> and year like concat('%', #{year}, '%') </if>
 		</if>
 	</sql>
 
@@ -155,16 +156,6 @@
 		where user_no >= 0
 		<include refid="searchCondition"></include>
 	</select>
-
-  <select id="findByKeyword" resultMap="EmployeeMap" parameterType="map">
-    select *
-    from employee
-    <where>
-      <if test="sex != null">sex like concat('%', #{sex}, '%')</if>
-      <if test="adress != null">adress like concat('%', #{adress}, '%')</if>
-      <if test="year != null">and year &lt;= #{year}</if>
-    </where>
-  </select>
 
 
 </mapper>
